@@ -8,13 +8,21 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CasesLookupView {
+    @IBOutlet weak var countriesList: UIPickerView!
+    
+    private var presenter: CasesLookupPresenter!
+    private var countriesDataSource: CountriesDataSource!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        presenter = CasesLookupPresenterImpl(repository: CasesLookupRepositoryImpl(), view: self)
     }
 
-
+    func displayCountries(countries: [Country]) {
+        countriesDataSource = CountriesDataSource(countries: countries)
+        countriesList.dataSource = countriesDataSource
+        countriesList.delegate = countriesDataSource
+    }
 }
 
