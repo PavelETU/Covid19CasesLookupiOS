@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0AFB9CDD2456E13000B9C1F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFB9CDC2456E13000B9C1F0 /* AppDelegate.swift */; };
-		0AFB9CDF2456E13000B9C1F0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFB9CDE2456E13000B9C1F0 /* SceneDelegate.swift */; };
 		0AFB9CE12456E13000B9C1F0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFB9CE02456E13000B9C1F0 /* ViewController.swift */; };
 		0AFB9CE42456E13000B9C1F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AFB9CE22456E13000B9C1F0 /* Main.storyboard */; };
 		0AFB9CE62456E13200B9C1F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AFB9CE52456E13200B9C1F0 /* Assets.xcassets */; };
@@ -37,7 +36,6 @@
 /* Begin PBXFileReference section */
 		0AFB9CD92456E13000B9C1F0 /* Covid 19 Cases Lookup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Covid 19 Cases Lookup.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AFB9CDC2456E13000B9C1F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0AFB9CDE2456E13000B9C1F0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0AFB9CE02456E13000B9C1F0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0AFB9CE32456E13000B9C1F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0AFB9CE52456E13200B9C1F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -100,7 +98,6 @@
 			isa = PBXGroup;
 			children = (
 				0AFB9CDC2456E13000B9C1F0 /* AppDelegate.swift */,
-				0AFB9CDE2456E13000B9C1F0 /* SceneDelegate.swift */,
 				0AFB9CE02456E13000B9C1F0 /* ViewController.swift */,
 				0AFB9CE22456E13000B9C1F0 /* Main.storyboard */,
 				0AFB9CE52456E13200B9C1F0 /* Assets.xcassets */,
@@ -261,7 +258,6 @@
 			files = (
 				0AFB9CE12456E13000B9C1F0 /* ViewController.swift in Sources */,
 				0AFB9CDD2456E13000B9C1F0 /* AppDelegate.swift in Sources */,
-				0AFB9CDF2456E13000B9C1F0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +432,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Covid 19 Cases Lookup/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -453,6 +450,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Covid 19 Cases Lookup/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
