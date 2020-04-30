@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct Country: Decodable, Hashable {
+struct Country: Decodable, Hashable, Identifiable {
+    let id = UUID()
     let Country: String
     let Slug: String
     let ISO2: String

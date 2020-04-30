@@ -13,13 +13,26 @@ struct CountryList: View {
     @EnvironmentObject var viewModel: CasesLookupViewModel
     
     var body: some View {
-        VStack {
-            ForEach(viewModel.countries, id: \.self) { country in
-                Text(country.Country)
-            }
+        NavigationView {
+            getViewForState()
         }
         .onAppear {
             self.viewModel.onAppear()
+        }
+    }
+    
+    func getViewForState() -> AnyView {
+        switch viewModel.state {
+        case .success:
+            return AnyView(
+                List(viewModel.countries) { country in
+                Text(country.Country)
+            }.navigationBarTitle("Pick a country")
+            )
+        case .error:
+            return AnyView(Text("Something went wrong"))
+        case .loading:
+            return AnyView(Text("Loading"))
         }
     }
 }

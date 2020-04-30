@@ -16,11 +16,23 @@ class CasesLookupViewModel: ObservableObject {
     }
     
     @Published var countries: [Country] = []
+    @Published var state: LoadingState = LoadingState.loading
     private let repo: CasesLookupRepository
     
     func onAppear() {
         repo.loadCountries(completionCallback: { countries in
-            self.countries = countries ?? []
+            guard let countriesToDisplay = countries else {
+                self.state = LoadingState.error
+                return
+            }
+            self.state = LoadingState.success
+            self.countries = countriesToDisplay
         })
     }
+}
+
+enum LoadingState {
+    case loading
+    case success
+    case error
 }
