@@ -9,7 +9,7 @@
 import Foundation
 
 class CasesLookupRepositoryImpl: CasesLookupRepository {
-    func loadCountries(completionCallback: @escaping ((_ result: [Country]?) -> ())) {
+    func loadCountries(completionCallback: @escaping ([Country]?) -> ()) {
         let url = URL(string: "https://api.covid19api.com/countries")!
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {

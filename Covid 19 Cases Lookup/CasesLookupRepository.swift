@@ -9,5 +9,5 @@
 import Foundation
 
 protocol CasesLookupRepository {
-    func loadCountries(completionCallback: @escaping ((_ result: [Country]?) -> ()))
+    func loadCountries(completionCallback: @escaping ([Country]?) -> ())
 }
