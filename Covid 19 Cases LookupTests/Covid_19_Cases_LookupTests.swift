@@ -10,25 +10,51 @@ import XCTest
 @testable import Covid_19_Cases_Lookup
 
 class Covid_19_Cases_LookupTests: XCTestCase {
+    
+    var viewModel: CasesLookupViewModel!
+    var testRepo: FakeRepository!
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        testRepo = FakeRepository()
+        viewModel = CasesLookupViewModel(repository: testRepo)
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testLoadingIsDisplayedWhenNothingReturnedYet() {
+        viewModel.onAppear()
+        
+        XCTAssertEqual(viewModel.state, LoadingState.loading)
     }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testErrorIsDisplayedWhenNilIsReturnedFromRepo() {
+        viewModel.onAppear()
+        
+        testRepo.returnValue(valueToReturn: nil)
+        
+        XCTAssertEqual(viewModel.state, LoadingState.error)
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testListIsDisplayedWhenNilIsReturnedFromRepo() {
+        let countries = [
+            Country(Country: "Ireland", Slug: "", ISO2: ""),
+            Country(Country: "Russia", Slug: "", ISO2: "")
+        ]
+        viewModel.onAppear()
+        
+        testRepo.returnValue(valueToReturn: countries)
+        
+        XCTAssertEqual(viewModel.state, LoadingState.success)
+        XCTAssertEqual(viewModel.countries, countries)
     }
+}
 
+class FakeRepository: CasesLookupRepository {
+    var callback: (([Country]?) -> ())?
+    
+    func loadCountries(completionCallback: @escaping ([Country]?) -> ()) {
+        callback = completionCallback
+    }
+    
+    func returnValue(valueToReturn: [Country]?) {
+        callback?(valueToReturn)
+    }
 }
