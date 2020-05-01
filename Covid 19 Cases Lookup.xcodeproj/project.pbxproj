@@ -21,7 +21,6 @@
 		0AFB9D13245772DD00B9C1F0 /* CasesLookupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFB9D12245772DD00B9C1F0 /* CasesLookupRepository.swift */; };
 		0AFB9D152457753F00B9C1F0 /* CasesLookupRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFB9D142457753F00B9C1F0 /* CasesLookupRepositoryImpl.swift */; };
 		0AFB9D172457867300B9C1F0 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFB9D162457867300B9C1F0 /* Country.swift */; };
-		0AFB9D192457950E00B9C1F0 /* CountriesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFB9D182457950E00B9C1F0 /* CountriesDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +61,6 @@
 		0AFB9D12245772DD00B9C1F0 /* CasesLookupRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CasesLookupRepository.swift; sourceTree = "<group>"; };
 		0AFB9D142457753F00B9C1F0 /* CasesLookupRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CasesLookupRepositoryImpl.swift; sourceTree = "<group>"; };
 		0AFB9D162457867300B9C1F0 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
-		0AFB9D182457950E00B9C1F0 /* CountriesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +119,6 @@
 				0AFB9D12245772DD00B9C1F0 /* CasesLookupRepository.swift */,
 				0AFB9D142457753F00B9C1F0 /* CasesLookupRepositoryImpl.swift */,
 				0AFB9D162457867300B9C1F0 /* Country.swift */,
-				0AFB9D182457950E00B9C1F0 /* CountriesDataSource.swift */,
 				0A122E9D245B580800295B3E /* CountryList.swift */,
 				0A122EDD245B67C500295B3E /* CasesLookupViewModel.swift */,
 				0A4710CD245C939C00E16478 /* ListOfCountries.swift */,
@@ -287,7 +284,6 @@
 				0A4710D0245C946700E16478 /* ErrorView.swift in Sources */,
 				0AFB9CDD2456E13000B9C1F0 /* AppDelegate.swift in Sources */,
 				0A4710D6245CDEF300E16478 /* SceneDelegate.swift in Sources */,
-				0AFB9D192457950E00B9C1F0 /* CountriesDataSource.swift in Sources */,
 				0A122EDE245B67C500295B3E /* CasesLookupViewModel.swift in Sources */,
 				0AFB9D13245772DD00B9C1F0 /* CasesLookupRepository.swift in Sources */,
 			);
