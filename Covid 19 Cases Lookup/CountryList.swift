@@ -39,7 +39,7 @@ struct CountryList_Previews: PreviewProvider {
     }
 }
 
-class PreviewRepository: CasesLookupRepository {
+private class PreviewRepository: CasesLookupRepository {
     func loadCountries(completionCallback: @escaping ([Country]?) -> ()) {
         completionCallback([
             Country(Country: "Ireland", Slug: "", ISO2: ""),
