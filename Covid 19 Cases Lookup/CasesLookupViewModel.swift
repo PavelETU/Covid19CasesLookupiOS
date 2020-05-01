@@ -22,17 +22,23 @@ class CasesLookupViewModel: ObservableObject {
     
     func onAppear() {
         repo.loadCountries(completionCallback: { countries in
-            guard let countriesToDisplay = countries else {
-                self.state = LoadingState.error
-                return
-            }
-            self.countries = countriesToDisplay
-            self.state = LoadingState.success
+            self.handleResults(countries: countries)
         })
     }
     
     func onRetry() {
-        
+        repo.loadCountries(completionCallback: { countries in
+            self.handleResults(countries: countries)
+        })
+    }
+    
+    private func handleResults(countries: [Country]?) {
+        guard let countriesToDisplay = countries else {
+            self.state = LoadingState.error
+            return
+        }
+        self.countries = countriesToDisplay
+        self.state = LoadingState.success
     }
 }
 
