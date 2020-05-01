@@ -19,10 +19,11 @@ class Covid_19_Cases_LookupTests: XCTestCase {
         viewModel = CasesLookupViewModel(repository: testRepo)
     }
 
-    func testLoadingIsDisplayedWhenNothingReturnedYet() {
+    func testOnAppearCountriesCallIsMadeAndStateIsLoading() {
         viewModel.onAppear()
         
         XCTAssertEqual(viewModel.state, LoadingState.loading)
+        XCTAssertEqual(testRepo.loadCountriesCallCount, 1)
     }
     
     func testErrorIsDisplayedWhenNilIsReturnedFromRepo() {
@@ -45,12 +46,23 @@ class Covid_19_Cases_LookupTests: XCTestCase {
         XCTAssertEqual(viewModel.state, LoadingState.success)
         XCTAssertEqual(viewModel.countries, countries)
     }
+    
+    func testOnRetryCountriesMakeACallToRepo() {
+        viewModel.onAppear()
+        
+        viewModel.onRetry()
+        
+        XCTAssertEqual(viewModel.state, LoadingState.loading)
+        XCTAssertEqual(testRepo.loadCountriesCallCount, 2)
+    }
 }
 
 class FakeRepository: CasesLookupRepository {
     var callback: (([Country]?) -> ())?
+    var loadCountriesCallCount = 0
     
     func loadCountries(completionCallback: @escaping ([Country]?) -> ()) {
+        loadCountriesCallCount += 1
         callback = completionCallback
     }
     
