@@ -17,6 +17,7 @@ class CasesLookupViewModel: ObservableObject {
     
     @Published var countries: [Country] = []
     @Published var state: LoadingState = LoadingState.loading
+    
     private let repo: CasesLookupRepository
     
     func onAppear() {
@@ -25,9 +26,13 @@ class CasesLookupViewModel: ObservableObject {
                 self.state = LoadingState.error
                 return
             }
-            self.state = LoadingState.success
             self.countries = countriesToDisplay
+            self.state = LoadingState.success
         })
+    }
+    
+    func onRetry() {
+        
     }
 }
 

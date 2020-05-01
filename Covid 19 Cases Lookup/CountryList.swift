@@ -24,15 +24,11 @@ struct CountryList: View {
     func getViewForState() -> AnyView {
         switch viewModel.state {
         case .success:
-            return AnyView(
-                List(viewModel.countries) { country in
-                Text(country.Country)
-            }.navigationBarTitle("Pick a country")
-            )
+            return AnyView(ListOfCountries(countries: viewModel.countries))
         case .error:
-            return AnyView(Text("Something went wrong"))
+            return AnyView(ErrorView(retryAction: { self.viewModel.onRetry() }))
         case .loading:
-            return AnyView(Text("Loading"))
+            return AnyView(LoadingView())
         }
     }
 }
