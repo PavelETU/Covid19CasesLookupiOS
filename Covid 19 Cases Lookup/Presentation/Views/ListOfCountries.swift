@@ -12,7 +12,7 @@ struct ListOfCountries: View {
     var countries: [Country]
     var body: some View {
         List(countries) { country in
-            NavigationLink(destination: CountryStats(country: country)) {
+            NavigationLink(destination: CountryStatsScreen(country: country)) {
                 Text(country.Country)
                     .frame(minWidth: 0,  maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             }

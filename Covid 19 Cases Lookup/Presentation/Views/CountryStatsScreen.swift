@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct CountryStats: View {
+struct CountryStatsScreen: View {
     var country: Country
     
     var body: some View {
@@ -20,6 +20,6 @@ struct CountryStats: View {
 
 struct CountryStats_Previews: PreviewProvider {
     static var previews: some View {
-        CountryStats(country: Country(Country: "Ireland", Slug: "", ISO2: ""))
+        CountryStatsScreen(country: Country(Country: "Ireland", Slug: "", ISO2: ""))
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct StatsForCountry: Decodable {
+struct StatsForCountry: Decodable, Hashable {
     let Confirmed: Int
     let Deaths: Int
     let Recovered: Int

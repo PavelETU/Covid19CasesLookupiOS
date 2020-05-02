@@ -11,27 +11,29 @@ import XCTest
 
 class Covid_19_Cases_LookupTests: XCTestCase {
     
-    var viewModel: CountriesListViewModel!
-    var testRepo: FakeRepository!
+    private var countriesListViewModel: CountriesListViewModel!
+    private var countryStatsViewModel: CountryStatsViewModel!
+    private var testRepo: FakeRepository!
 
     override func setUp() {
         testRepo = FakeRepository()
-        viewModel = CountriesListViewModel(repository: testRepo)
+        countriesListViewModel = CountriesListViewModel(repository: testRepo)
+        countryStatsViewModel = CountryStatsViewModel(repository: testRepo)
     }
 
     func testOnAppearCountriesCallIsMadeAndStateIsLoading() {
-        viewModel.onAppear()
+        countriesListViewModel.onAppear()
         
-        XCTAssertEqual(viewModel.state, LoadingState.loading)
+        XCTAssertEqual(countriesListViewModel.state, LoadingState.loading)
         XCTAssertEqual(testRepo.loadCountriesCallCount, 1)
     }
     
     func testErrorIsDisplayedWhenNilIsReturnedFromRepo() {
-        viewModel.onAppear()
+        countriesListViewModel.onAppear()
         
         testRepo.returnCountries(valueToReturn: nil)
         
-        XCTAssertEqual(viewModel.state, LoadingState.error)
+        XCTAssertEqual(countriesListViewModel.state, LoadingState.error)
     }
     
     func testListIsDisplayedWhenNilIsReturnedFromRepo() {
@@ -39,27 +41,61 @@ class Covid_19_Cases_LookupTests: XCTestCase {
             Country(Country: "Ireland", Slug: "", ISO2: ""),
             Country(Country: "Russia", Slug: "", ISO2: "")
         ]
-        viewModel.onAppear()
+        countriesListViewModel.onAppear()
         
         testRepo.returnCountries(valueToReturn: countries)
         
-        XCTAssertEqual(viewModel.state, LoadingState.success)
-        XCTAssertEqual(viewModel.countries, countries)
+        XCTAssertEqual(countriesListViewModel.state, LoadingState.success)
+        XCTAssertEqual(countriesListViewModel.countries, countries)
     }
     
     func testOnRetryCountriesMakeACallToRepo() {
-        viewModel.onAppear()
+        countriesListViewModel.onAppear()
         
-        viewModel.onRetry()
+        countriesListViewModel.onRetry()
         
-        XCTAssertEqual(viewModel.state, LoadingState.loading)
+        XCTAssertEqual(countriesListViewModel.state, LoadingState.loading)
         XCTAssertEqual(testRepo.loadCountriesCallCount, 2)
+    }
+    
+    
+    func testStatsViewModelMakesARequestOnAppearWithTheRightCountry() {
+        let country = Country(Country: "Ireland", Slug: "", ISO2: "")
+        
+        countryStatsViewModel.onAppear(country: country)
+        
+        XCTAssertEqual(testRepo.loadStatsCallCount, 1)
+        XCTAssertEqual(testRepo.lastCountryToLoadStatsFor, country)
+        XCTAssertEqual(countryStatsViewModel.state, LoadingState.loading)
+    }
+    
+    func testStatsViewModelShowsErrorWhenGettingNilFromDataSource() {
+        let country = Country(Country: "Ireland", Slug: "", ISO2: "")
+        countryStatsViewModel.onAppear(country: country)
+        
+        testRepo.returnStatsForCountry(valueToReturn: nil)
+        
+        XCTAssertEqual(countryStatsViewModel.state, LoadingState.error)
+    }
+    
+    func testStatsViewModelShowsResultsAfterLoadingSuccessfully() {
+        let stats: [StatsForCountry] = [
+            StatsForCountry(Confirmed: 90, Deaths: 1, Recovered: 40, Date: "2020-04-04T00:00:00Z"),
+            StatsForCountry(Confirmed: 105, Deaths: 1, Recovered: 50, Date: "2020-04-05T00:00:00Z")
+        ]
+        let country = Country(Country: "Ireland", Slug: "", ISO2: "")
+        countryStatsViewModel.onAppear(country: country)
+        
+        testRepo.returnStatsForCountry(valueToReturn: stats)
+        
+        XCTAssertEqual(countryStatsViewModel.state, LoadingState.success)
+        XCTAssertEqual(countryStatsViewModel.countryStats, stats)
     }
 }
 
-class FakeRepository: CasesLookupRepository {
-    var callbackForCountries: (([Country]?) -> ())?
-    var callbackForStats: (([StatsForCountry]?) -> ())?
+private class FakeRepository: CasesLookupRepository {
+    private var callbackForCountries: (([Country]?) -> ())?
+    private var callbackForStats: (([StatsForCountry]?) -> ())?
     var loadCountriesCallCount = 0
     var loadStatsCallCount = 0
     var lastCountryToLoadStatsFor: Country?
@@ -70,6 +106,7 @@ class FakeRepository: CasesLookupRepository {
     }
     
     func loadStatsForCountry(country: Country, completionCallback: @escaping ([StatsForCountry]?) -> ()) {
+        loadStatsCallCount += 1
         lastCountryToLoadStatsFor = country
         callbackForStats = completionCallback
     }
