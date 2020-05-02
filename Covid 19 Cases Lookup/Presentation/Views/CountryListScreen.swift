@@ -13,9 +13,7 @@ struct CountryList: View {
     @EnvironmentObject var viewModel: CountriesListViewModel
     
     var body: some View {
-        NavigationView {
-            getViewForState()
-        }
+        getViewForState()
         .onAppear {
             self.viewModel.onAppear()
         }

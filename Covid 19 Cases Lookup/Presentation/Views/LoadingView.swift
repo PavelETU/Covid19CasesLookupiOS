@@ -25,8 +25,6 @@ struct LoadingView: View {
             .frame(width: 200, height: 200)
             .rotationEffect(Angle(degrees: degrees))
             .onAppear(perform: {self.startProgress()})
-            .navigationBarTitle("")
-            .navigationBarHidden(true)
     }
     
     func startProgress() {

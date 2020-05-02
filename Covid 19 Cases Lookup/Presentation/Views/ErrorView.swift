@@ -16,8 +16,6 @@ struct ErrorView: View {
                 .multilineTextAlignment(.center)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
         })
-        .navigationBarTitle("")
-        .navigationBarHidden(true)
     }
 }
 
