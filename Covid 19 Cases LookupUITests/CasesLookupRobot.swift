@@ -10,5 +10,7 @@ import Foundation
 
 protocol CasesLookupRobot {
     func givenIHaveAnInternetConnectionAndOpenTheApp()
-    func iSeeAScreenWithAvailableCountries()
+    func iSeeAScreenOfAvailableCountries()
+    func andIClickOnACountryWithATitle(countryTitle: String)
+    func iSeeStatsScreenForACountry(countryTitle: String)
 }

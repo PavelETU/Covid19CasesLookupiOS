@@ -18,9 +18,17 @@ extension CasesLookupRobot {
         app.launch()
     }
     
-    func iSeeAScreenWithAvailableCountries() {
-        XCTAssertTrue(XCUIApplication().staticTexts["Ireland"].exists)
-        XCTAssertTrue(XCUIApplication().staticTexts["Russia"].exists)
-        XCTAssertTrue(XCUIApplication().staticTexts["UK"].exists)
+    func iSeeAScreenOfAvailableCountries() {
+        XCTAssertTrue(XCUIApplication().buttons["Ireland"].exists)
+        XCTAssertTrue(XCUIApplication().buttons["Russia"].exists)
+        XCTAssertTrue(XCUIApplication().buttons["UK"].exists)
+    }
+    
+    func andIClickOnACountryWithATitle(countryTitle: String) {
+        XCUIApplication().buttons[countryTitle].tap()
+    }
+    
+    func iSeeStatsScreenForACountry(countryTitle: String) {
+        XCTAssertTrue(XCUIApplication().staticTexts["Cases in " + countryTitle].exists)
     }
 }
