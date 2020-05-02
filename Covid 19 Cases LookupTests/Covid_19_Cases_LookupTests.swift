@@ -11,12 +11,12 @@ import XCTest
 
 class Covid_19_Cases_LookupTests: XCTestCase {
     
-    var viewModel: CasesLookupViewModel!
+    var viewModel: CountriesListViewModel!
     var testRepo: FakeRepository!
 
     override func setUp() {
         testRepo = FakeRepository()
-        viewModel = CasesLookupViewModel(repository: testRepo)
+        viewModel = CountriesListViewModel(repository: testRepo)
     }
 
     func testOnAppearCountriesCallIsMadeAndStateIsLoading() {

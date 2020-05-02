@@ -31,7 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 repositoryToUse = CasesLookupRepositoryImpl()
             }
             window.rootViewController = UIHostingController(rootView: CountryList()
-                .environmentObject(CasesLookupViewModel(repository: repositoryToUse))
+                .environmentObject(CountriesListViewModel(repository: repositoryToUse))
             )
             self.window = window
             window.makeKeyAndVisible()

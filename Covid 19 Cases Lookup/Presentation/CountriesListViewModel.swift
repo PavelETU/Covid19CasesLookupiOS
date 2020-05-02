@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-class CasesLookupViewModel: ObservableObject {
+class CountriesListViewModel: ObservableObject {
     
     init(repository: CasesLookupRepository) {
         repo = repository

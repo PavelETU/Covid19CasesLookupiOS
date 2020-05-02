@@ -10,7 +10,7 @@ import SwiftUI
 
 struct CountryList: View {
     
-    @EnvironmentObject var viewModel: CasesLookupViewModel
+    @EnvironmentObject var viewModel: CountriesListViewModel
     
     var body: some View {
         NavigationView {
@@ -35,6 +35,6 @@ struct CountryList: View {
 
 struct CountryList_Previews: PreviewProvider {
     static var previews: some View {
-        CountryList().environmentObject(CasesLookupViewModel(repository: LocalRepository()))
+        CountryList().environmentObject(CountriesListViewModel(repository: LocalRepository()))
     }
 }
