@@ -12,7 +12,7 @@ let TEST_ARGUMENT = "CalledFromUITest"
 
 
 extension CasesLookupRobot {
-    func givenIHaveAnInternetConnectionAndOpenTheAp() {
+    func givenIHaveAnInternetConnectionAndOpenTheApp() {
         let app = XCUIApplication()
         app.launchArguments.append(TEST_ARGUMENT)
         app.launch()

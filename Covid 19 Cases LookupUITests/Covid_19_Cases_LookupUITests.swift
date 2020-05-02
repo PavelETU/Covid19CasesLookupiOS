@@ -10,7 +10,7 @@ import XCTest
 
 class Covid_19_Cases_LookupUITests: XCTestCase, CasesLookupRobot {
     func testCountriesListIsDisplayedWhenAppIsOpened() {
-        givenIHaveAnInternetConnectionAndOpenTheAp()
+        givenIHaveAnInternetConnectionAndOpenTheApp()
         iSeeAScreenWithAvailableCountries()
     }
 }

@@ -9,6 +9,6 @@
 import Foundation
 
 protocol CasesLookupRobot {
-    func givenIHaveAnInternetConnectionAndOpenTheAp()
+    func givenIHaveAnInternetConnectionAndOpenTheApp()
     func iSeeAScreenWithAvailableCountries()
 }
