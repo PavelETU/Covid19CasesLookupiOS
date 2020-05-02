@@ -24,8 +24,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
+            var repositoryToUse: CasesLookupRepository
+            if (ProcessInfo.processInfo.arguments.contains("CalledFromUITest")) {
+                repositoryToUse = LocalRepository()
+            } else {
+                repositoryToUse = CasesLookupRepositoryImpl()
+            }
             window.rootViewController = UIHostingController(rootView: CountryList()
-                .environmentObject(CasesLookupViewModel(repository: CasesLookupRepositoryImpl()))
+                .environmentObject(CasesLookupViewModel(repository: repositoryToUse))
             )
             self.window = window
             window.makeKeyAndVisible()

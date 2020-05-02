@@ -35,15 +35,6 @@ struct CountryList: View {
 
 struct CountryList_Previews: PreviewProvider {
     static var previews: some View {
-        CountryList().environmentObject(CasesLookupViewModel(repository: PreviewRepository()))
-    }
-}
-
-private class PreviewRepository: CasesLookupRepository {
-    func loadCountries(completionCallback: @escaping ([Country]?) -> ()) {
-        completionCallback([
-            Country(Country: "Ireland", Slug: "", ISO2: ""),
-            Country(Country: "Russia", Slug: "", ISO2: "")
-        ])
+        CountryList().environmentObject(CasesLookupViewModel(repository: LocalRepository()))
     }
 }
