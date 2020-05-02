@@ -31,4 +31,9 @@ extension CasesLookupRobot {
     func iSeeStatsScreenForACountry(countryTitle: String) {
         XCTAssertTrue(XCUIApplication().staticTexts["Cases in " + countryTitle].exists)
     }
+    
+    func iSeeStatsFromDataLayerForACountry(countryTitle: String) {
+        print("Not implemented")
+        XCTAssertTrue(false)
+    }
 }

@@ -14,10 +14,16 @@ class Covid_19_Cases_LookupUITests: XCTestCase, CasesLookupRobot {
         iSeeAScreenOfAvailableCountries()
     }
     
-    func testScreenWithStatsIsPresentedWhenIClickOnACountry() {
+    func testScreenWithStatsIsPresentedAftreClickingOnACountry() {
         givenIHaveAnInternetConnectionAndOpenTheApp()
         iSeeAScreenOfAvailableCountries()
         andIClickOnACountryWithATitle(countryTitle: "Russia")
         iSeeStatsScreenForACountry(countryTitle: "Russia")
+    }
+    
+    func testRightStatsAreDisplayed() {
+        givenIHaveAnInternetConnectionAndOpenTheApp()
+        andIClickOnACountryWithATitle(countryTitle: "Ireland")
+        iSeeStatsFromDataLayerForACountry(countryTitle: "Ireland")
     }
 }
