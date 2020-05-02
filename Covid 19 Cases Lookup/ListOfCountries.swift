@@ -12,7 +12,10 @@ struct ListOfCountries: View {
     var countries: [Country]
     var body: some View {
         List(countries) { country in
-            Text(country.Country)
+            NavigationLink(destination: CountryStats(country: country)) {
+                Text(country.Country)
+                    .frame(minWidth: 0,  maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+            }
         }
         .navigationBarTitle("Pick a country")
         .navigationBarHidden(false)
