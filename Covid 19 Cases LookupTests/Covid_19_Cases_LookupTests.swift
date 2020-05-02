@@ -66,7 +66,7 @@ class Covid_19_Cases_LookupTests: XCTestCase {
         
         XCTAssertEqual(testRepo.loadStatsCallCount, 1)
         XCTAssertEqual(testRepo.lastCountryToLoadStatsFor, country)
-        XCTAssertEqual(countryStatsViewModel.state, LoadingState.loading)
+        XCTAssertEqual(countryStatsViewModel.state, StatsScreenStates.loading)
     }
     
     func testStatsViewModelShowsErrorWhenGettingNilFromDataSource() {
@@ -75,7 +75,7 @@ class Covid_19_Cases_LookupTests: XCTestCase {
         
         testRepo.returnStatsForCountry(valueToReturn: nil)
         
-        XCTAssertEqual(countryStatsViewModel.state, LoadingState.error)
+        XCTAssertEqual(countryStatsViewModel.state, StatsScreenStates.error)
     }
     
     func testStatsViewModelShowsResultsAfterLoadingSuccessfully() {
@@ -88,7 +88,7 @@ class Covid_19_Cases_LookupTests: XCTestCase {
         
         testRepo.returnStatsForCountry(valueToReturn: stats)
         
-        XCTAssertEqual(countryStatsViewModel.state, LoadingState.success)
+        XCTAssertEqual(countryStatsViewModel.state, StatsScreenStates.success)
         XCTAssertEqual(countryStatsViewModel.countryStats, stats)
     }
     
@@ -106,7 +106,16 @@ class Covid_19_Cases_LookupTests: XCTestCase {
         
         XCTAssertEqual(testRepo.loadStatsCallCount, 2)
         XCTAssertEqual(testRepo.lastCountryToLoadStatsFor, country)
-        XCTAssertEqual(countryStatsViewModel.state, LoadingState.success)
+        XCTAssertEqual(countryStatsViewModel.state, StatsScreenStates.success)
+    }
+    
+    func testNoInfoStateWhenGettingEmptyList() {
+        let country = Country(Country: "Ireland", Slug: "", ISO2: "")
+        countryStatsViewModel.onAppear(country: country)
+        
+        testRepo.returnStatsForCountry(valueToReturn: [])
+        
+        XCTAssertEqual(countryStatsViewModel.state, StatsScreenStates.noInfo)
     }
 }
 

@@ -9,6 +9,10 @@
 import Foundation
 
 class LocalRepository: CasesLookupRepository {
+    let irelandStats = [
+        StatsForCountry(Confirmed: 90, Deaths: 1, Recovered: 40, Date: "2020-04-04T00:00:00Z"),
+        StatsForCountry(Confirmed: 105, Deaths: 1, Recovered: 50, Date: "2020-04-05T00:00:00Z")
+    ]
     func loadCountries(completionCallback: @escaping ([Country]?) -> ()) {
         completionCallback([
             Country(Country: "Ireland", Slug: "", ISO2: ""),
@@ -18,6 +22,10 @@ class LocalRepository: CasesLookupRepository {
     }
     
     func loadStatsForCountry(country: Country, completionCallback: @escaping ([StatsForCountry]?) -> ()) {
-        
+        if (country.Country == "Ireland") {
+            completionCallback(irelandStats)
+        } else {
+            completionCallback([])
+        }
     }
 }

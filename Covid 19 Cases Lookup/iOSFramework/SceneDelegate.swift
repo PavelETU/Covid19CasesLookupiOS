@@ -32,6 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
             window.rootViewController = UIHostingController(rootView: CountryList()
                 .environmentObject(CountriesListViewModel(repository: repositoryToUse))
+                .environmentObject(CountryStatsViewModel(repository: repositoryToUse))
             )
             self.window = window
             window.makeKeyAndVisible()

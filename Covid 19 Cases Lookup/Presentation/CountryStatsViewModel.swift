@@ -16,7 +16,7 @@ class CountryStatsViewModel: ObservableObject {
     }
     
     @Published var countryStats: [StatsForCountry] = []
-    @Published var state: LoadingState = LoadingState.loading
+    @Published var state: StatsScreenStates = StatsScreenStates.loading
     
     private let repo: CasesLookupRepository
     private var country: Country!
@@ -33,11 +33,22 @@ class CountryStatsViewModel: ObservableObject {
     private func loadCountryStats() {
         repo.loadStatsForCountry(country: country, completionCallback: { countryStats in
             guard let finalCountryStats = countryStats else {
-                self.state = LoadingState.error
+                self.state = StatsScreenStates.error
+                return
+            }
+            if (finalCountryStats.isEmpty) {
+                self.state = StatsScreenStates.noInfo
                 return
             }
             self.countryStats = finalCountryStats
-            self.state = LoadingState.success
+            self.state = StatsScreenStates.success
         })
     }
+}
+
+enum StatsScreenStates {
+    case loading
+    case noInfo
+    case success
+    case error
 }
