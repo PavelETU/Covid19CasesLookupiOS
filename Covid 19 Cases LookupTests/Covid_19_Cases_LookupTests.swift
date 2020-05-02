@@ -91,6 +91,23 @@ class Covid_19_Cases_LookupTests: XCTestCase {
         XCTAssertEqual(countryStatsViewModel.state, LoadingState.success)
         XCTAssertEqual(countryStatsViewModel.countryStats, stats)
     }
+    
+    func testOnRetryForStats() {
+        let stats: [StatsForCountry] = [
+            StatsForCountry(Confirmed: 90, Deaths: 1, Recovered: 40, Date: "2020-04-04T00:00:00Z"),
+            StatsForCountry(Confirmed: 105, Deaths: 1, Recovered: 50, Date: "2020-04-05T00:00:00Z")
+        ]
+        let country = Country(Country: "Ireland", Slug: "", ISO2: "")
+        countryStatsViewModel.onAppear(country: country)
+        testRepo.returnStatsForCountry(valueToReturn: nil)
+        
+        countryStatsViewModel.onRetry()
+        testRepo.returnStatsForCountry(valueToReturn: stats)
+        
+        XCTAssertEqual(testRepo.loadStatsCallCount, 2)
+        XCTAssertEqual(testRepo.lastCountryToLoadStatsFor, country)
+        XCTAssertEqual(countryStatsViewModel.state, LoadingState.success)
+    }
 }
 
 private class FakeRepository: CasesLookupRepository {
