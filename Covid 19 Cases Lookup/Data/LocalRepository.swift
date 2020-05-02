@@ -16,4 +16,8 @@ class LocalRepository: CasesLookupRepository {
             Country(Country: "UK", Slug: "", ISO2: "")
         ])
     }
+    
+    func loadStatsForCountry(country: Country, completionCallback: @escaping ([StatsForCountry]?) -> ()) {
+        
+    }
 }

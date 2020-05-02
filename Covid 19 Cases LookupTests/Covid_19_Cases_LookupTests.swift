@@ -29,7 +29,7 @@ class Covid_19_Cases_LookupTests: XCTestCase {
     func testErrorIsDisplayedWhenNilIsReturnedFromRepo() {
         viewModel.onAppear()
         
-        testRepo.returnValue(valueToReturn: nil)
+        testRepo.returnCountries(valueToReturn: nil)
         
         XCTAssertEqual(viewModel.state, LoadingState.error)
     }
@@ -41,7 +41,7 @@ class Covid_19_Cases_LookupTests: XCTestCase {
         ]
         viewModel.onAppear()
         
-        testRepo.returnValue(valueToReturn: countries)
+        testRepo.returnCountries(valueToReturn: countries)
         
         XCTAssertEqual(viewModel.state, LoadingState.success)
         XCTAssertEqual(viewModel.countries, countries)
@@ -58,15 +58,27 @@ class Covid_19_Cases_LookupTests: XCTestCase {
 }
 
 class FakeRepository: CasesLookupRepository {
-    var callback: (([Country]?) -> ())?
+    var callbackForCountries: (([Country]?) -> ())?
+    var callbackForStats: (([StatsForCountry]?) -> ())?
     var loadCountriesCallCount = 0
+    var loadStatsCallCount = 0
+    var lastCountryToLoadStatsFor: Country?
     
     func loadCountries(completionCallback: @escaping ([Country]?) -> ()) {
         loadCountriesCallCount += 1
-        callback = completionCallback
+        callbackForCountries = completionCallback
     }
     
-    func returnValue(valueToReturn: [Country]?) {
-        callback?(valueToReturn)
+    func loadStatsForCountry(country: Country, completionCallback: @escaping ([StatsForCountry]?) -> ()) {
+        lastCountryToLoadStatsFor = country
+        callbackForStats = completionCallback
+    }
+    
+    func returnCountries(valueToReturn: [Country]?) {
+        callbackForCountries?(valueToReturn)
+    }
+    
+    func returnStatsForCountry(valueToReturn: [StatsForCountry]?) {
+        callbackForStats?(valueToReturn)
     }
 }

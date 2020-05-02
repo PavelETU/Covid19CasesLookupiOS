@@ -10,4 +10,5 @@ import Foundation
 
 protocol CasesLookupRepository {
     func loadCountries(completionCallback: @escaping ([Country]?) -> ())
+    func loadStatsForCountry(country: Country, completionCallback: @escaping ([StatsForCountry]?) -> ())
 }

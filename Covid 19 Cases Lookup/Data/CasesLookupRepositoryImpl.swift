@@ -37,4 +37,33 @@ class CasesLookupRepositoryImpl: CasesLookupRepository {
         }
         task.resume()
     }
+    
+    func loadStatsForCountry(country: Country, completionCallback: @escaping ([StatsForCountry]?) -> ()) {
+        let url = URL(string: "https://api.covid19api.com/total/country/" + country.Slug)!
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            if error != nil {
+                DispatchQueue.main.async {
+                    completionCallback(nil)
+                }
+                return
+            }
+            guard let httpResponse = response as? HTTPURLResponse,
+                (200...299).contains(httpResponse.statusCode) else {
+                    DispatchQueue.main.async {
+                        completionCallback(nil)
+                    }
+                    return
+            }
+            guard let countriesArray = try? JSONDecoder().decode([StatsForCountry].self, from: data!) else {
+                DispatchQueue.main.async {
+                    completionCallback(nil)
+                }
+                return
+            }
+            DispatchQueue.main.async {
+                completionCallback(countriesArray)
+            }
+        }
+        task.resume()
+    }
 }

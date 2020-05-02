@@ -7,3 +7,10 @@
 //
 
 import Foundation
+
+struct StatsForCountry: Decodable {
+    let Confirmed: Int
+    let Deaths: Int
+    let Recovered: Int
+    let Date: String
+}
