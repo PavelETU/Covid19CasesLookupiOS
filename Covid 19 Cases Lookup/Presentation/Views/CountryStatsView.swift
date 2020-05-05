@@ -18,7 +18,7 @@ struct CountryStatsView: View {
                 ForEach(self.statsPresentationViewModel.valuesToDisplay, id: \.self) { valueToDisplay in
                     BarView(barOutputStructure: valueToDisplay)
                 }
-            }.onAppear { self.statsPresentationViewModel.onAppear(countryStats: self.countryStats, geometryProxy: metrics) }
+            }.onAppear { self.statsPresentationViewModel.onAppear(countryStats: self.countryStats, screenWidth: metrics.size.width) }
         }
     }
 }

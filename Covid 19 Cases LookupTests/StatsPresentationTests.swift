@@ -14,7 +14,8 @@ class StatsPresentationTests: XCTestCase {
     private var viewModel: StatsPresentationViewModel!
     
     override func setUp() {
-        viewModel = StatsPresentationViewModel(countryStats: [
+        viewModel = StatsPresentationViewModel()
+        viewModel.onAppear(countryStats: [
             StatsForCountry(Confirmed: 200, Deaths: 1, Recovered: 40, Date: "2020-04-04T00:00:00Z"),
             StatsForCountry(Confirmed: 300, Deaths: 5, Recovered: 50, Date: "2020-04-05T00:00:00Z"),
             StatsForCountry(Confirmed: 400, Deaths: 6, Recovered: 60, Date: "2020-05-04T00:00:00Z"),
@@ -24,7 +25,7 @@ class StatsPresentationTests: XCTestCase {
             StatsForCountry(Confirmed: 36000, Deaths: 160, Recovered: 22000, Date: "2020-11-08T00:00:00Z"),
             StatsForCountry(Confirmed: 38000, Deaths: 150, Recovered: 23000, Date: "2020-11-14T00:00:00Z"),
             StatsForCountry(Confirmed: 39000, Deaths: 200, Recovered: 24000, Date: "2020-11-20T00:00:00Z")
-        ])
+        ], screenWidth: 180)
     }
     
     func testArraySplitIntoMonthsProperly() {

@@ -21,12 +21,12 @@ class StatsPresentationViewModel: ObservableObject {
     
     @Published var valuesToDisplay: [BarOutputStructure] = []
     
-    func onAppear(countryStats: [StatsForCountry], geometryProxy: GeometryProxy) {
+    func onAppear(countryStats: [StatsForCountry], screenWidth: CGFloat) {
         parseCountryStats(countryStats: countryStats)
         let lastMonthIndex = confirmedCasesByMonth.count - 1
         let valuesToProcess: [Int] = confirmedCasesByMonth[lastMonthIndex]
         let maxValue = valuesToProcess.max()!
-        let barWidth = geometryProxy.size.width / CGFloat(valuesToProcess.count) - BarConstants.SPACING_BTW_BARS * 2
+        let barWidth = screenWidth / CGFloat(valuesToProcess.count) - BarConstants.SPACING_BTW_BARS * 2
         let normalizedValues = valuesToProcess.map { (CGFloat($0) / CGFloat(maxValue)) * BarConstants.MAX_VALUE_OF_BAR }
         var temp:[BarOutputStructure] = []
         for index in 0..<normalizedValues.count {
