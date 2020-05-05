@@ -8,26 +8,24 @@
 
 import SwiftUI
 
-let MAX_VALUE_OF_BAR: CGFloat = 300
 
 struct BarView: View {
-    var barWidth: CGFloat
-    var value: CGFloat
+    var barOutputStructure: BarOutputStructure
     var body: some View {
         ZStack(alignment: .bottom) {
             RoundedRectangle(cornerRadius: 10)
-                .frame(width: barWidth, height: MAX_VALUE_OF_BAR)   .foregroundColor(Color.black)
+                .frame(width: barOutputStructure.barWidth, height: BarConstants.MAX_VALUE_OF_BAR)   .foregroundColor(Color.black)
             RoundedRectangle(cornerRadius: 10)
                 .fill(LinearGradient(gradient: Gradient(colors: [getEndColorForValue(), Color.green]), startPoint: .top, endPoint: .bottom))
-                .frame(width: barWidth, height: value).foregroundColor(Color.green)
-            Text(String(format: "%.0f", Double(value))).foregroundColor(Color.white)
+                .frame(width: barOutputStructure.barWidth, height: barOutputStructure.normalizedValue).foregroundColor(Color.green)
+            Text(String(barOutputStructure.actualValue)).foregroundColor(Color.white)
         }
     }
     
     private func getEndColorForValue() -> Color {
-        if (value > MAX_VALUE_OF_BAR / 1.5) {
+        if (barOutputStructure.normalizedValue > BarConstants.MAX_VALUE_OF_BAR / 1.5) {
             return Color.red
-        } else if (value > MAX_VALUE_OF_BAR / 2) {
+        } else if (barOutputStructure.normalizedValue > BarConstants.MAX_VALUE_OF_BAR / 2) {
             return Color.purple
         } else {
             return Color.blue
@@ -37,6 +35,6 @@ struct BarView: View {
 
 struct BarView_Previews: PreviewProvider {
     static var previews: some View {
-        BarView(barWidth: 40, value: 250)
+        BarView(barOutputStructure:BarOutputStructure(barWidth: 40, normalizedValue: 250, actualValue: 250))
     }
 }

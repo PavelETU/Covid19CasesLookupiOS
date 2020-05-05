@@ -9,22 +9,23 @@
 import SwiftUI
 
 struct CountryStatsView: View {
+    @ObservedObject var statsPresentationViewModel = StatsPresentationViewModel()
     var countryStats: [StatsForCountry]
     
     var body: some View {
         GeometryReader { metrics in
-            HStack(alignment: .center, spacing: 0) {
-                ForEach(self.countryStats, id: \.self) { stats in
-                    BarView(barWidth: metrics.size.width / CGFloat(self.countryStats.count), value: CGFloat(stats.Confirmed))
+            HStack(alignment: .center, spacing: BarConstants.SPACING_BTW_BARS) {
+                ForEach(self.statsPresentationViewModel.valuesToDisplay, id: \.self) { valueToDisplay in
+                    BarView(barOutputStructure: valueToDisplay)
                 }
-            }
+            }.onAppear { self.statsPresentationViewModel.onAppear(countryStats: self.countryStats, geometryProxy: metrics) }
         }
     }
 }
 
 struct CountryStatsView_Previews: PreviewProvider {
     static var previews: some View {
-        CountryStatsView(countryStats: [
+    CountryStatsView(countryStats: [
             StatsForCountry(Confirmed: 300, Deaths: 1, Recovered: 40, Date: "2020-04-04T00:00:00Z"),
             StatsForCountry(Confirmed: 105, Deaths: 1, Recovered: 50, Date: "2020-04-05T00:00:00Z"),
             StatsForCountry(Confirmed: 90, Deaths: 1, Recovered: 40, Date: "2020-04-04T00:00:00Z"),
