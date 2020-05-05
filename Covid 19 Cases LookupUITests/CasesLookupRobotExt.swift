@@ -33,6 +33,7 @@ extension CasesLookupRobot {
     }
     
     func iSeeStatsFromDataLayerForACountry(countryTitle: String) {
-        XCTAssertTrue(XCUIApplication().staticTexts["There are 105 confirmed cases as of 2020-04-05T00:00:00Z"].exists)
+        XCTAssertTrue(XCUIApplication().staticTexts["90"].exists)
+        XCTAssertTrue(XCUIApplication().staticTexts["105"].exists)
     }
 }

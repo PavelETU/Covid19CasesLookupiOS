@@ -22,7 +22,7 @@ struct CountryList: View {
     func getViewForState() -> AnyView {
         switch viewModel.state {
         case .success:
-            return AnyView(ListOfCountries(countries: viewModel.countries))
+            return AnyView(ListOfCountriesView(countries: viewModel.countries))
         case .error:
             return AnyView(ErrorView(retryAction: { self.viewModel.onRetry() }))
         case .loading:

@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct StatsForCountry: Decodable, Hashable {
+struct StatsForCountry: Decodable, Hashable, Identifiable {
+    let id = UUID()
     let Confirmed: Int
     let Deaths: Int
     let Recovered: Int

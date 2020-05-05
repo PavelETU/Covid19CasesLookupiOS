@@ -13,7 +13,7 @@
 		0A2D8267245E2EBD00EB06ED /* NoStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D8266245E2EBD00EB06ED /* NoStatsView.swift */; };
 		0A4524C3245DAA5400E4E0A9 /* CountryStatsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4524C2245DAA5400E4E0A9 /* CountryStatsScreen.swift */; };
 		0A4524C5245DBBC700E4E0A9 /* StatsForCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4524C4245DBBC700E4E0A9 /* StatsForCountry.swift */; };
-		0A4710CE245C939C00E16478 /* ListOfCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4710CD245C939C00E16478 /* ListOfCountries.swift */; };
+		0A4710CE245C939C00E16478 /* ListOfCountriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4710CD245C939C00E16478 /* ListOfCountriesView.swift */; };
 		0A4710D0245C946700E16478 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4710CF245C946700E16478 /* ErrorView.swift */; };
 		0A4710D2245C94DB00E16478 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4710D1245C94DB00E16478 /* LoadingView.swift */; };
 		0A4710D6245CDEF300E16478 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4710D5245CDEF300E16478 /* SceneDelegate.swift */; };
@@ -29,6 +29,7 @@
 		0AFB9D13245772DD00B9C1F0 /* CasesLookupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFB9D12245772DD00B9C1F0 /* CasesLookupRepository.swift */; };
 		0AFB9D152457753F00B9C1F0 /* CasesLookupRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFB9D142457753F00B9C1F0 /* CasesLookupRepositoryImpl.swift */; };
 		0AFB9D172457867300B9C1F0 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFB9D162457867300B9C1F0 /* Country.swift */; };
+		0AFD146C2460B22A00EF9A8F /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD146B2460B22A00EF9A8F /* BarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,7 +56,7 @@
 		0A2D8266245E2EBD00EB06ED /* NoStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoStatsView.swift; sourceTree = "<group>"; };
 		0A4524C2245DAA5400E4E0A9 /* CountryStatsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryStatsScreen.swift; sourceTree = "<group>"; };
 		0A4524C4245DBBC700E4E0A9 /* StatsForCountry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsForCountry.swift; sourceTree = "<group>"; };
-		0A4710CD245C939C00E16478 /* ListOfCountries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfCountries.swift; sourceTree = "<group>"; };
+		0A4710CD245C939C00E16478 /* ListOfCountriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfCountriesView.swift; sourceTree = "<group>"; };
 		0A4710CF245C946700E16478 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		0A4710D1245C94DB00E16478 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		0A4710D5245CDEF300E16478 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +78,7 @@
 		0AFB9D12245772DD00B9C1F0 /* CasesLookupRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CasesLookupRepository.swift; sourceTree = "<group>"; };
 		0AFB9D142457753F00B9C1F0 /* CasesLookupRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CasesLookupRepositoryImpl.swift; sourceTree = "<group>"; };
 		0AFB9D162457867300B9C1F0 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		0AFD146B2460B22A00EF9A8F /* BarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,13 +139,14 @@
 		0A4524CC245DBDBD00E4E0A9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0A4710CD245C939C00E16478 /* ListOfCountries.swift */,
+				0A4710CD245C939C00E16478 /* ListOfCountriesView.swift */,
 				0A4524C2245DAA5400E4E0A9 /* CountryStatsScreen.swift */,
 				0A122E9D245B580800295B3E /* CountryListScreen.swift */,
 				0A4710D1245C94DB00E16478 /* LoadingView.swift */,
 				0A4710CF245C946700E16478 /* ErrorView.swift */,
 				0A2D8264245E278C00EB06ED /* CountryStatsView.swift */,
 				0A2D8266245E2EBD00EB06ED /* NoStatsView.swift */,
+				0AFD146B2460B22A00EF9A8F /* BarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -341,11 +344,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AFB9D172457867300B9C1F0 /* Country.swift in Sources */,
+				0AFD146C2460B22A00EF9A8F /* BarView.swift in Sources */,
 				0AFB9D152457753F00B9C1F0 /* CasesLookupRepositoryImpl.swift in Sources */,
 				0A4524C5245DBBC700E4E0A9 /* StatsForCountry.swift in Sources */,
 				0A2D8267245E2EBD00EB06ED /* NoStatsView.swift in Sources */,
 				0A4710DE245CEFAA00E16478 /* LocalRepository.swift in Sources */,
-				0A4710CE245C939C00E16478 /* ListOfCountries.swift in Sources */,
+				0A4710CE245C939C00E16478 /* ListOfCountriesView.swift in Sources */,
 				0A4710D2245C94DB00E16478 /* LoadingView.swift in Sources */,
 				0A122E9E245B580800295B3E /* CountryListScreen.swift in Sources */,
 				0A2D8265245E278C00EB06ED /* CountryStatsView.swift in Sources */,

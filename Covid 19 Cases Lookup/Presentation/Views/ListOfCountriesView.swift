@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ListOfCountries: View {
+struct ListOfCountriesView: View {
     var countries: [Country]
     var body: some View {
         NavigationView {
@@ -26,7 +26,7 @@ struct ListOfCountries: View {
 
 struct ListOfCountries_Previews: PreviewProvider {
     static var previews: some View {
-        ListOfCountries(countries: [
+        ListOfCountriesView(countries: [
             Country(Country: "Ireland", Slug: "", ISO2: ""),
             Country(Country: "Russia", Slug: "", ISO2: "")
         ])
