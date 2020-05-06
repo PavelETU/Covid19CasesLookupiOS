@@ -51,8 +51,8 @@ class CountryStatsViewModel: ObservableObject {
                 self.state = StatsScreenStates.noInfo
                 return
             }
-            self.parseCountryStats(countryStats: finalCountryStats)
             self.state = StatsScreenStates.success
+            self.parseCountryStats(countryStats: finalCountryStats)
         })
     }
     
@@ -77,9 +77,12 @@ class CountryStatsViewModel: ObservableObject {
         let valuesToProcess: [Int] = confirmedCasesByMonth[lastMonthIndex]
         let maxValue = valuesToProcess.max()!
         let barWidth = screenWidth / CGFloat(valuesToProcess.count) - BarConstants.SPACING_BTW_BARS * 2
-        let normalizedValues = valuesToProcess.map { (CGFloat($0) / CGFloat(maxValue)) * BarConstants.MAX_VALUE_OF_BAR }
+        var normalizedValues = valuesToProcess.map { (CGFloat($0) / CGFloat(maxValue)) * BarConstants.MAX_VALUE_OF_BAR }
         var temp:[BarOutputStructure] = []
         for index in 0..<normalizedValues.count {
+            if (normalizedValues[index].isNaN) {
+                normalizedValues[index] = CGFloat(valuesToProcess[index])
+            }
             temp.append(BarOutputStructure(barWidth: barWidth, normalizedValue: normalizedValues[index], actualValue: valuesToProcess[index]))
         }
         valuesToDisplay = temp
