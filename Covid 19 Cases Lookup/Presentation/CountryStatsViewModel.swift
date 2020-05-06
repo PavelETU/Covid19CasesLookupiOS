@@ -23,7 +23,7 @@ class CountryStatsViewModel: ObservableObject {
     var confirmedCasesByMonth: [[Int]] = [[]]
     var deathsByMonth: [[Int]] = [[]]
     var recoveredByMonth: [[Int]] = [[]]
-    var screenWidth: CGFloat = 1000
+    var screenWidth: CGFloat!
     
     @Published var valuesToDisplay: [BarOutputStructure] = []
     @Published var state: StatsScreenStates = StatsScreenStates.loading
