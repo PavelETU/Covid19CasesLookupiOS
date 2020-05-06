@@ -14,17 +14,20 @@ struct CountryStatsScreen: View {
     var country: Country
     
     var body: some View {
-        getViewForState()
-        .navigationBarTitle(Text("Cases in " + country.Country), displayMode: .inline)
-        .onAppear {
-            self.viewModel.onAppear(country: self.country)
-        }
+        GeometryReader { metrics in
+            VStack {
+                self.getViewForState()
+            }
+            .onAppear {
+                self.viewModel.onAppear(country: self.country, screenWidth: metrics.size.width)
+            }
+        }.navigationBarTitle(Text("Cases in " + self.country.Country), displayMode: .inline)
     }
     
     func getViewForState() -> AnyView {
         switch viewModel.state {
         case .success:
-            return AnyView(CountryStatsView(countryStats: viewModel.countryStats))
+            return AnyView(statsView)
         case .noInfo:
             return AnyView(NoStatsView())
         case .error:
@@ -34,10 +37,17 @@ struct CountryStatsScreen: View {
         }
     }
 
+    var statsView: some View {
+        HStack(alignment: .center, spacing: BarConstants.SPACING_BTW_BARS) {
+            ForEach(self.viewModel.valuesToDisplay, id: \.self) { valueToDisplay in
+                BarView(barOutputStructure: valueToDisplay)
+            }
+        }
+    }
 }
 
 struct CountryStats_Previews: PreviewProvider {
     static var previews: some View {
-        CountryStatsScreen(country: Country(Country: "Ireland", Slug: "", ISO2: "")).environmentObject(CountryStatsViewModel(repository: LocalRepository()))
+        CountryStatsScreen(country: Country(Country: "Ireland", Slug: "ireland", ISO2: "ireland")).environmentObject(CountryStatsViewModel(repository: CasesLookupRepositoryImpl()))
     }
 }
