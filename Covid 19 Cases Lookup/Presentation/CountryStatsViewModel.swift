@@ -37,6 +37,7 @@ class CountryStatsViewModel: ObservableObject {
             }
         }
     }
+    @Published var monthWithTagList: [MonthWithTag] = []
     
     private let repo: CasesLookupRepository
     private var country: Country!
@@ -73,11 +74,13 @@ class CountryStatsViewModel: ObservableObject {
         deathsByMonth = [[]]
         recoveredByMonth = [[]]
         var monthIndex = 0
+        monthWithTagList.append(MonthWithTag(month: countryStats.first!.getMonthTitle(), tag: monthIndex))
         self.addStatsToVariables(indexToAdd: monthIndex, statsToAdd: countryStats.first!)
         for (index, element) in countryStats.enumerated().dropFirst() {
-            if (countryStats[index - 1].isStatsFromPreviousMonths(statsToCompare: element)) {
+            if (countryStats[index - 1].monthsAreDifferent(statsToCompare: element)) {
                 monthIndex += 1
                 self.addNewMonthToStats()
+                monthWithTagList.append(MonthWithTag(month: element.getMonthTitle(), tag: monthIndex))
             }
             self.addStatsToVariables(indexToAdd: monthIndex, statsToAdd: element)
         }
@@ -142,12 +145,52 @@ struct BarOutputStructure: Hashable {
     let actualValue: Int
 }
 
+struct MonthWithTag: Hashable {
+    let month: String
+    let tag: Int
+}
+
 extension StatsForCountry {
-    func isStatsFromPreviousMonths(statsToCompare: StatsForCountry) -> Bool {
+    func monthsAreDifferent(statsToCompare: StatsForCountry) -> Bool {
+        return getMonthFromDate() != statsToCompare.getMonthFromDate()
+    }
+    
+    func getMonthFromDate() -> Int {
         let start = Date.index(Date.startIndex, offsetBy: 5)
         let end = Date.index(Date.endIndex, offsetBy: -14)
-        let monthSubstring = Int(Date[start...end]) ?? -1
-        let comparingMonth = Int(statsToCompare.Date[start...end]) ?? -1
-        return monthSubstring < comparingMonth
+        return Int(Date[start...end]) ?? -1
+    }
+    
+    func getMonthTitle() -> String {
+        var monthStr = ""
+        switch getMonthFromDate() {
+        case 1:
+            monthStr = "January"
+        case 2:
+            monthStr = "February"
+        case 3:
+            monthStr = "March"
+        case 4:
+            monthStr = "April"
+        case 5:
+            monthStr = "May"
+        case 6:
+            monthStr = "June"
+        case 7:
+            monthStr = "July"
+        case 8:
+            monthStr = "August"
+        case 9:
+            monthStr = "September"
+        case 10:
+            monthStr = "October"
+        case 11:
+            monthStr = "November"
+        case 12:
+            monthStr = "December"
+        default:
+            monthStr = "Unknown"
+        }
+        return monthStr
     }
 }

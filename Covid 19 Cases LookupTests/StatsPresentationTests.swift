@@ -119,6 +119,54 @@ class StatsPresentationTests: XCTestCase {
         XCTAssertEqual(viewModel.valuesToDisplay[0].normalizedValue, 0)
         XCTAssertEqual(viewModel.valuesToDisplay[0].actualValue, 0)
     }
+    
+    func testMonthTitlesAreDisplayedProperly() {
+        viewModel.onAppear(country: Country(Country: "", Slug: "", ISO2: ""), screenWidth: 1000)
+        testRepo.returnStats(stats: [
+            StatsForCountry(Confirmed: 0, Deaths: 0, Recovered: 0, Date: "2020-01-04T00:00:00Z"),
+            StatsForCountry(Confirmed: 0, Deaths: 0, Recovered: 0, Date: "2020-02-04T00:00:00Z"),
+            StatsForCountry(Confirmed: 0, Deaths: 0, Recovered: 0, Date: "2020-03-04T00:00:00Z"),
+            StatsForCountry(Confirmed: 0, Deaths: 0, Recovered: 0, Date: "2020-04-04T00:00:00Z"),
+            StatsForCountry(Confirmed: 0, Deaths: 0, Recovered: 0, Date: "2020-05-04T00:00:00Z"),
+            StatsForCountry(Confirmed: 0, Deaths: 0, Recovered: 0, Date: "2020-06-04T00:00:00Z"),
+            StatsForCountry(Confirmed: 0, Deaths: 0, Recovered: 0, Date: "2020-07-04T00:00:00Z"),
+            StatsForCountry(Confirmed: 0, Deaths: 0, Recovered: 0, Date: "2020-08-04T00:00:00Z"),
+            StatsForCountry(Confirmed: 0, Deaths: 0, Recovered: 0, Date: "2020-09-04T00:00:00Z"),
+            StatsForCountry(Confirmed: 0, Deaths: 0, Recovered: 0, Date: "2020-10-04T00:00:00Z"),
+            StatsForCountry(Confirmed: 0, Deaths: 0, Recovered: 0, Date: "2020-11-04T00:00:00Z"),
+            StatsForCountry(Confirmed: 0, Deaths: 0, Recovered: 0, Date: "2020-12-04T00:00:00Z"),
+            StatsForCountry(Confirmed: 0, Deaths: 0, Recovered: 0, Date: "2020-03-04T00:00:00Z")
+        ])
+        
+        XCTAssertEqual(viewModel.monthWithTagList.count, 13)
+        XCTAssertEqual(viewModel.monthWithTagList[0].month, "January")
+        XCTAssertEqual(viewModel.monthWithTagList[1].month, "February")
+        XCTAssertEqual(viewModel.monthWithTagList[2].month, "March")
+        XCTAssertEqual(viewModel.monthWithTagList[3].month, "April")
+        XCTAssertEqual(viewModel.monthWithTagList[4].month, "May")
+        XCTAssertEqual(viewModel.monthWithTagList[5].month, "June")
+        XCTAssertEqual(viewModel.monthWithTagList[6].month, "July")
+        XCTAssertEqual(viewModel.monthWithTagList[7].month, "August")
+        XCTAssertEqual(viewModel.monthWithTagList[8].month, "September")
+        XCTAssertEqual(viewModel.monthWithTagList[9].month, "October")
+        XCTAssertEqual(viewModel.monthWithTagList[10].month, "November")
+        XCTAssertEqual(viewModel.monthWithTagList[11].month, "December")
+        XCTAssertEqual(viewModel.monthWithTagList[12].month, "March")
+        
+        XCTAssertEqual(viewModel.monthWithTagList[0].tag, 0)
+        XCTAssertEqual(viewModel.monthWithTagList[1].tag, 1)
+        XCTAssertEqual(viewModel.monthWithTagList[2].tag, 2)
+        XCTAssertEqual(viewModel.monthWithTagList[3].tag, 3)
+        XCTAssertEqual(viewModel.monthWithTagList[4].tag, 4)
+        XCTAssertEqual(viewModel.monthWithTagList[5].tag, 5)
+        XCTAssertEqual(viewModel.monthWithTagList[6].tag, 6)
+        XCTAssertEqual(viewModel.monthWithTagList[7].tag, 7)
+        XCTAssertEqual(viewModel.monthWithTagList[8].tag, 8)
+        XCTAssertEqual(viewModel.monthWithTagList[9].tag, 9)
+        XCTAssertEqual(viewModel.monthWithTagList[10].tag, 10)
+        XCTAssertEqual(viewModel.monthWithTagList[11].tag, 11)
+        XCTAssertEqual(viewModel.monthWithTagList[12].tag, 12)
+    }
 }
 
 private class TestRepository: CasesLookupRepository {
