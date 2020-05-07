@@ -52,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		0A050775246426AF00D47425 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		0A0507772464776100D47425 /* screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screen.png; sourceTree = "<group>"; };
 		0A122E9D245B580800295B3E /* CountryListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListScreen.swift; sourceTree = "<group>"; };
 		0A122EDD245B67C500295B3E /* CountriesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesListViewModel.swift; sourceTree = "<group>"; };
 		0A2D8266245E2EBD00EB06ED /* NoStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoStatsView.swift; sourceTree = "<group>"; };
@@ -172,6 +173,7 @@
 				0AFB9CF22456E13300B9C1F0 /* Covid 19 Cases LookupTests */,
 				0AFB9CFD2456E13300B9C1F0 /* Covid 19 Cases LookupUITests */,
 				0AFB9CDA2456E13000B9C1F0 /* Products */,
+				0A0507772464776100D47425 /* screen.png */,
 			);
 			sourceTree = "<group>";
 		};
