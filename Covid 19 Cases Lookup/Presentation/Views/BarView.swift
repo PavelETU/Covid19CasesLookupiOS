@@ -19,6 +19,7 @@ struct BarView: View {
                 .fill(LinearGradient(gradient: Gradient(colors: [getEndColorForValue(), Color.green]), startPoint: .top, endPoint: .bottom))
                 .frame(width: barOutputStructure.barWidth, height: barOutputStructure.normalizedValue).foregroundColor(Color.green)
             Text(String(barOutputStructure.actualValue)).foregroundColor(Color.white)
+                .frame(width: barOutputStructure.barWidth)
         }
     }
     

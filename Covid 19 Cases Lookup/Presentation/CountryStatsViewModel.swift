@@ -38,6 +38,15 @@ class CountryStatsViewModel: ObservableObject {
         }
     }
     @Published var monthWithTagList: [MonthWithTag] = []
+    @Published var monthNumber = 0 {
+        didSet {
+            if !skipUpdate {
+                updateValuesToDisplay()
+            } else {
+                skipUpdate = false
+            }
+        }
+    }
     
     private let repo: CasesLookupRepository
     private var country: Country!
@@ -45,13 +54,16 @@ class CountryStatsViewModel: ObservableObject {
     func onAppear(country: Country, screenWidth: CGFloat) {
         self.country = country
         self.screenWidth = screenWidth
-        skipUpdate = true
-        typeOfCases = 0
         loadCountryStats()
     }
     
     func onRetry() {
         loadCountryStats()
+    }
+    
+    func onDisappear() {
+        skipUpdate = true
+        monthNumber = 0
     }
     
     private func loadCountryStats() {
@@ -73,6 +85,7 @@ class CountryStatsViewModel: ObservableObject {
         confirmedCasesByMonth = [[]]
         deathsByMonth = [[]]
         recoveredByMonth = [[]]
+        monthWithTagList = []
         var monthIndex = 0
         monthWithTagList.append(MonthWithTag(month: countryStats.first!.getMonthTitle(), tag: monthIndex))
         self.addStatsToVariables(indexToAdd: monthIndex, statsToAdd: countryStats.first!)
@@ -84,11 +97,7 @@ class CountryStatsViewModel: ObservableObject {
             }
             self.addStatsToVariables(indexToAdd: monthIndex, statsToAdd: element)
         }
-        populateValuesToDisplayWithStatsForTheLastMonth()
-    }
-    
-    private func populateValuesToDisplayWithStatsForTheLastMonth() {
-        updateValuesToDisplay()
+        monthNumber = monthIndex
     }
     
     private func addStatsToVariables(indexToAdd: Int, statsToAdd: StatsForCountry) {
@@ -106,17 +115,15 @@ class CountryStatsViewModel: ObservableObject {
     private func updateValuesToDisplay() {
         switch (typeOfCases) {
         case 1:
-            updateValuesToDisplayByData(data: deathsByMonth)
+            updateValuesToDisplayByData(valuesToProcess: deathsByMonth[monthNumber])
         case 2:
-            updateValuesToDisplayByData(data: recoveredByMonth)
+            updateValuesToDisplayByData(valuesToProcess: recoveredByMonth[monthNumber])
         default:
-            updateValuesToDisplayByData(data: confirmedCasesByMonth)
+            updateValuesToDisplayByData(valuesToProcess: confirmedCasesByMonth[monthNumber])
         }
     }
     
-    private func updateValuesToDisplayByData(data: [[Int]]) {
-        let lastMonthIndex = data.count - 1
-        let valuesToProcess: [Int] = data[lastMonthIndex]
+    private func updateValuesToDisplayByData(valuesToProcess: [Int]) {
         let maxValue = valuesToProcess.max()!
         let barWidth = screenWidth / CGFloat(valuesToProcess.count) - BarConstants.SPACING_BTW_BARS * 2
         var normalizedValues = valuesToProcess.map { (CGFloat($0) / CGFloat(maxValue)) * BarConstants.MAX_VALUE_OF_BAR }

@@ -17,4 +17,7 @@ protocol CasesLookupRobot {
     func iSeeConfirmedCasesFromDataLayerForACountry(countryTitle: String)
     func iSeeDeathCasesFromDataLayerForACountry(countryTitle: String)
     func iSeeRecoveredCasesFromDataLayerForACountry(countryTitle: String)
+    func iCanSeeConfirmedCasesForAllAvailableMonths(countryTitle: String)
+    func iCanSeeDeathCasesForAllAvailableMonths(countryTitle: String)
+    func iCanSeeRecoveredCasesForAllAvailableMonths(countryTitle: String)
 }

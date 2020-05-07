@@ -8,13 +8,12 @@
 
 import XCTest
 
-let TEST_ARGUMENT = "CalledFromUITest"
-
+@testable import Covid_19_Cases_Lookup
 
 extension CasesLookupRobot {
     func givenIHaveAnInternetConnectionAndOpenTheApp() {
         let app = XCUIApplication()
-        app.launchArguments.append(TEST_ARGUMENT)
+        app.launchArguments.append("CalledFromUITest")
         app.launch()
     }
     
@@ -60,6 +59,43 @@ extension CasesLookupRobot {
             XCTAssertTrue(XCUIApplication().staticTexts["50"].exists)
         } else {
             XCTAssertTrue(false, "There is only stats for Ireland in a local repo")
+        }
+    }
+    
+    func iCanSeeConfirmedCasesForAllAvailableMonths(countryTitle: String) {
+        if (countryTitle == "Ireland") {
+            checkMonth(monthTitle: "February", values: [20])
+            checkMonth(monthTitle: "March", values: [45])
+            checkMonth(monthTitle: "April", values: [90, 105])
+        } else {
+            XCTAssertTrue(false, "There is only stats for Ireland in a local repo")
+        }
+    }
+    
+    func iCanSeeDeathCasesForAllAvailableMonths(countryTitle: String) {
+        if (countryTitle == "Ireland") {
+            checkMonth(monthTitle: "February", values: [3])
+            checkMonth(monthTitle: "March", values: [0])
+            checkMonth(monthTitle: "April", values: [1, 3])
+        } else {
+            XCTAssertTrue(false, "There is only stats for Ireland in a local repo")
+        }
+    }
+    
+    func iCanSeeRecoveredCasesForAllAvailableMonths(countryTitle: String) {
+        if (countryTitle == "Ireland") {
+            checkMonth(monthTitle: "February", values: [105])
+            checkMonth(monthTitle: "March", values: [20])
+            checkMonth(monthTitle: "April", values: [40, 50])
+        } else {
+            XCTAssertTrue(false, "There is only stats for Ireland in a local repo")
+        }
+    }
+    
+    private func checkMonth(monthTitle: String, values: [Int]) {
+        XCUIApplication().buttons[monthTitle].tap()
+        values.forEach {
+            XCTAssertTrue(XCUIApplication().staticTexts[String($0)].exists)
         }
     }
 }

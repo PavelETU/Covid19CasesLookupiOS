@@ -48,4 +48,25 @@ class Covid_19_Cases_LookupUITests: XCTestCase, CasesLookupRobot {
         andIChoseTypeOfCasesWithATitle(typeOfCases: "Confirmed")
         iSeeConfirmedCasesFromDataLayerForACountry(countryTitle: "Ireland")
     }
+    
+    func testConfirmedCasesByMonth() {
+        givenIHaveAnInternetConnectionAndOpenTheApp()
+        andIClickOnACountryWithATitle(countryTitle: "Ireland")
+        andIChoseTypeOfCasesWithATitle(typeOfCases: "Confirmed")
+        iCanSeeConfirmedCasesForAllAvailableMonths(countryTitle: "Ireland")
+    }
+    
+    func testDeatchCasesByMonth() {
+        givenIHaveAnInternetConnectionAndOpenTheApp()
+        andIClickOnACountryWithATitle(countryTitle: "Ireland")
+        andIChoseTypeOfCasesWithATitle(typeOfCases: "Deaths")
+        iCanSeeDeathCasesForAllAvailableMonths(countryTitle: "Ireland")
+    }
+    
+    func testRecoveredCasesByMonth() {
+        givenIHaveAnInternetConnectionAndOpenTheApp()
+        andIClickOnACountryWithATitle(countryTitle: "Ireland")
+        andIChoseTypeOfCasesWithATitle(typeOfCases: "Recovered")
+        iCanSeeRecoveredCasesForAllAvailableMonths(countryTitle: "Ireland")
+    }
 }
