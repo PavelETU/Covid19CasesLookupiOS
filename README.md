@@ -6,4 +6,4 @@ Uses:
 - SwiftUI
 - BDD style UI tests (see Covid_19_Cases_LookupUITests.swift)
 
-![Screenshot] (/screen.png)
+<img src="screen.png" width="200">
