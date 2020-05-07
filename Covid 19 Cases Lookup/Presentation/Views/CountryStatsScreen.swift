@@ -27,7 +27,7 @@ struct CountryStatsScreen: View {
     func getViewForState() -> AnyView {
         switch viewModel.state {
         case .success:
-            return AnyView(statsView)
+            return AnyView(StatsView())
         case .noInfo:
             return AnyView(NoStatsView())
         case .error:
@@ -36,18 +36,10 @@ struct CountryStatsScreen: View {
             return AnyView(LoadingView())
         }
     }
-
-    var statsView: some View {
-        HStack(alignment: .center, spacing: BarConstants.SPACING_BTW_BARS) {
-            ForEach(self.viewModel.valuesToDisplay, id: \.self) { valueToDisplay in
-                BarView(barOutputStructure: valueToDisplay)
-            }
-        }
-    }
 }
 
 struct CountryStats_Previews: PreviewProvider {
     static var previews: some View {
-        CountryStatsScreen(country: Country(Country: "Ireland", Slug: "ireland", ISO2: "ireland")).environmentObject(CountryStatsViewModel(repository: CasesLookupRepositoryImpl()))
+        CountryStatsScreen(country: Country(Country: "Ireland", Slug: "ireland", ISO2: "ireland")).environmentObject(CountryStatsViewModel(repository: LocalRepository()))
     }
 }

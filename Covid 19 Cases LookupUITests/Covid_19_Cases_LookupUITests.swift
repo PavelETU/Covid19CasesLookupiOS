@@ -21,9 +21,31 @@ class Covid_19_Cases_LookupUITests: XCTestCase, CasesLookupRobot {
         iSeeStatsScreenForACountry(countryTitle: "Russia")
     }
     
-    func testRightStatsAreDisplayed() {
+    func testRightConfirmedStatsAreDisplayed() {
         givenIHaveAnInternetConnectionAndOpenTheApp()
         andIClickOnACountryWithATitle(countryTitle: "Ireland")
-        iSeeStatsFromDataLayerForACountry(countryTitle: "Ireland")
+        iSeeConfirmedCasesFromDataLayerForACountry(countryTitle: "Ireland")
+    }
+    
+    func testRightDeathCasesAreDisplayed() {
+        givenIHaveAnInternetConnectionAndOpenTheApp()
+        andIClickOnACountryWithATitle(countryTitle: "Ireland")
+        andIChoseTypeOfCasesWithATitle(typeOfCases: "Deaths")
+        iSeeDeathCasesFromDataLayerForACountry(countryTitle: "Ireland")
+    }
+    
+    func testRightRecoveredCasesAreDisplayed() {
+        givenIHaveAnInternetConnectionAndOpenTheApp()
+        andIClickOnACountryWithATitle(countryTitle: "Ireland")
+        andIChoseTypeOfCasesWithATitle(typeOfCases: "Recovered")
+        iSeeRecoveredCasesFromDataLayerForACountry(countryTitle: "Ireland")
+    }
+    
+    func testConfirmedCasesDisplayedAgain() {
+        givenIHaveAnInternetConnectionAndOpenTheApp()
+        andIClickOnACountryWithATitle(countryTitle: "Ireland")
+        andIChoseTypeOfCasesWithATitle(typeOfCases: "Recovered")
+        andIChoseTypeOfCasesWithATitle(typeOfCases: "Confirmed")
+        iSeeConfirmedCasesFromDataLayerForACountry(countryTitle: "Ireland")
     }
 }

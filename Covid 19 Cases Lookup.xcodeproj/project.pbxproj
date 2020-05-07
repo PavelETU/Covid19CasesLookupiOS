@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A050776246426AF00D47425 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A050775246426AF00D47425 /* StatsView.swift */; };
 		0A122E9E245B580800295B3E /* CountryListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A122E9D245B580800295B3E /* CountryListScreen.swift */; };
 		0A122EDE245B67C500295B3E /* CountriesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A122EDD245B67C500295B3E /* CountriesListViewModel.swift */; };
 		0A2D8267245E2EBD00EB06ED /* NoStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D8266245E2EBD00EB06ED /* NoStatsView.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A050775246426AF00D47425 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		0A122E9D245B580800295B3E /* CountryListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListScreen.swift; sourceTree = "<group>"; };
 		0A122EDD245B67C500295B3E /* CountriesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesListViewModel.swift; sourceTree = "<group>"; };
 		0A2D8266245E2EBD00EB06ED /* NoStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoStatsView.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				0A4710CF245C946700E16478 /* ErrorView.swift */,
 				0A2D8266245E2EBD00EB06ED /* NoStatsView.swift */,
 				0AFD146B2460B22A00EF9A8F /* BarView.swift */,
+				0A050775246426AF00D47425 /* StatsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				0A4710D0245C946700E16478 /* ErrorView.swift in Sources */,
 				0AFB9CDD2456E13000B9C1F0 /* AppDelegate.swift in Sources */,
 				0A4B33A7245DD6EF0097B5E1 /* CountryStatsViewModel.swift in Sources */,
+				0A050776246426AF00D47425 /* StatsView.swift in Sources */,
 				0A4524C3245DAA5400E4E0A9 /* CountryStatsScreen.swift in Sources */,
 				0A4710D6245CDEF300E16478 /* SceneDelegate.swift in Sources */,
 				0A122EDE245B67C500295B3E /* CountriesListViewModel.swift in Sources */,

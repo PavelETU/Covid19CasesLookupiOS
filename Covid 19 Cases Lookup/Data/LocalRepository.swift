@@ -11,7 +11,7 @@ import Foundation
 class LocalRepository: CasesLookupRepository {
     let irelandStats = [
         StatsForCountry(Confirmed: 90, Deaths: 1, Recovered: 40, Date: "2020-04-04T00:00:00Z"),
-        StatsForCountry(Confirmed: 105, Deaths: 1, Recovered: 50, Date: "2020-04-05T00:00:00Z")
+        StatsForCountry(Confirmed: 105, Deaths: 3, Recovered: 50, Date: "2020-04-05T00:00:00Z")
     ]
     func loadCountries(completionCallback: @escaping ([Country]?) -> ()) {
         completionCallback([

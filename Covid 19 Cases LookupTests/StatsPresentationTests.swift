@@ -12,13 +12,17 @@ import XCTest
 class StatsPresentationTests: XCTestCase {
     
     private var viewModel: CountryStatsViewModel!
+    private var testRepo: TestRepository!
     
     override func setUp() {
-        viewModel = CountryStatsViewModel(repository: FakeRepo())
-        viewModel.onAppear(country: Country(Country: "", Slug: "", ISO2: ""), screenWidth: 180)
+        testRepo = TestRepository()
+        viewModel = CountryStatsViewModel(repository: testRepo)
     }
     
     func testArraySplitIntoMonthsProperly() {
+        viewModel.onAppear(country: Country(Country: "", Slug: "", ISO2: ""), screenWidth: 1000)
+        testRepo.returnStats()
+        
         XCTAssertEqual(viewModel.confirmedCasesByMonth[0].count, 2)
         XCTAssertEqual(viewModel.confirmedCasesByMonth[1].count, 1)
         XCTAssertEqual(viewModel.confirmedCasesByMonth[2].count, 1)
@@ -39,6 +43,9 @@ class StatsPresentationTests: XCTestCase {
     }
     
     func testConfirmedCasesParsedProperly() {
+        viewModel.onAppear(country: Country(Country: "", Slug: "", ISO2: ""), screenWidth: 1000)
+        testRepo.returnStats()
+        
         XCTAssertEqual(viewModel.confirmedCasesByMonth[0][0], 200)
         XCTAssertEqual(viewModel.confirmedCasesByMonth[0][1], 300)
         
@@ -54,6 +61,9 @@ class StatsPresentationTests: XCTestCase {
     }
 
     func testDeathsCasesParsedProperly() {
+        viewModel.onAppear(country: Country(Country: "", Slug: "", ISO2: ""), screenWidth: 1000)
+        testRepo.returnStats()
+        
         XCTAssertEqual(viewModel.deathsByMonth[0][0], 1)
         XCTAssertEqual(viewModel.deathsByMonth[0][1], 5)
         
@@ -69,6 +79,9 @@ class StatsPresentationTests: XCTestCase {
     }
     
     func testRecoveredCasesParsedProperly() {
+        viewModel.onAppear(country: Country(Country: "", Slug: "", ISO2: ""), screenWidth: 1000)
+        testRepo.returnStats()
+        
         XCTAssertEqual(viewModel.recoveredByMonth[0][0], 40)
         XCTAssertEqual(viewModel.recoveredByMonth[0][1], 50)
         
@@ -82,26 +95,53 @@ class StatsPresentationTests: XCTestCase {
         XCTAssertEqual(viewModel.recoveredByMonth[3][3], 23000)
         XCTAssertEqual(viewModel.recoveredByMonth[3][4], 24000)
     }
+    
+    func testEmptyStatsAreDisplayedProperly() {
+        viewModel.onAppear(country: Country(Country: "", Slug: "", ISO2: ""), screenWidth: 1000)
+        testRepo.returnStats(stats: [
+            StatsForCountry(Confirmed: 0, Deaths: 0, Recovered: 0, Date: "2020-04-04T00:00:00Z")
+        ])
+        
+        XCTAssertEqual(viewModel.confirmedCasesByMonth[0].count, 1)
+        XCTAssertEqual(viewModel.confirmedCasesByMonth.count, 1)
+        XCTAssertEqual(viewModel.confirmedCasesByMonth[0][0], 0)
+        
+        XCTAssertEqual(viewModel.deathsByMonth[0].count, 1)
+        XCTAssertEqual(viewModel.deathsByMonth.count, 1)
+        XCTAssertEqual(viewModel.deathsByMonth[0][0], 0)
+        
+        XCTAssertEqual(viewModel.recoveredByMonth[0].count, 1)
+        XCTAssertEqual(viewModel.recoveredByMonth.count, 1)
+        XCTAssertEqual(viewModel.recoveredByMonth[0][0], 0)
+        
+        XCTAssertEqual(viewModel.valuesToDisplay.count, 1)
+        XCTAssertEqual(viewModel.valuesToDisplay[0].barWidth, 998)
+        XCTAssertEqual(viewModel.valuesToDisplay[0].normalizedValue, 0)
+        XCTAssertEqual(viewModel.valuesToDisplay[0].actualValue, 0)
+    }
 }
 
-private class FakeRepo: CasesLookupRepository {
-    func loadCountries(completionCallback: @escaping ([Country]?) -> ()) {
-        
-    }
+private class TestRepository: CasesLookupRepository {
+    
+    private var statsCallback: (([StatsForCountry]?) -> ())?
+    
+    func loadCountries(completionCallback: @escaping ([Country]?) -> ()) {}
     
     func loadStatsForCountry(country: Country, completionCallback: @escaping ([StatsForCountry]?) -> ()) {
-        completionCallback([
-            StatsForCountry(Confirmed: 200, Deaths: 1, Recovered: 40, Date: "2020-04-04T00:00:00Z"),
-            StatsForCountry(Confirmed: 300, Deaths: 5, Recovered: 50, Date: "2020-04-05T00:00:00Z"),
-            StatsForCountry(Confirmed: 400, Deaths: 6, Recovered: 60, Date: "2020-05-04T00:00:00Z"),
-            StatsForCountry(Confirmed: 600, Deaths: 10, Recovered: 80, Date: "2020-06-05T00:00:00Z"),
-            StatsForCountry(Confirmed: 30000, Deaths: 150, Recovered: 20000, Date: "2020-11-04T00:00:00Z"),
-            StatsForCountry(Confirmed: 33000, Deaths: 150, Recovered: 21000, Date: "2020-11-07T00:00:00Z"),
-            StatsForCountry(Confirmed: 36000, Deaths: 160, Recovered: 22000, Date: "2020-11-08T00:00:00Z"),
-            StatsForCountry(Confirmed: 38000, Deaths: 150, Recovered: 23000, Date: "2020-11-14T00:00:00Z"),
-            StatsForCountry(Confirmed: 39000, Deaths: 200, Recovered: 24000, Date: "2020-11-20T00:00:00Z")
-        ])
+        statsCallback = completionCallback
     }
     
-    
+    func returnStats(stats: [StatsForCountry]? = [
+        StatsForCountry(Confirmed: 200, Deaths: 1, Recovered: 40, Date: "2020-04-04T00:00:00Z"),
+        StatsForCountry(Confirmed: 300, Deaths: 5, Recovered: 50, Date: "2020-04-05T00:00:00Z"),
+        StatsForCountry(Confirmed: 400, Deaths: 6, Recovered: 60, Date: "2020-05-04T00:00:00Z"),
+        StatsForCountry(Confirmed: 600, Deaths: 10, Recovered: 80, Date: "2020-06-05T00:00:00Z"),
+        StatsForCountry(Confirmed: 30000, Deaths: 150, Recovered: 20000, Date: "2020-11-04T00:00:00Z"),
+        StatsForCountry(Confirmed: 33000, Deaths: 150, Recovered: 21000, Date: "2020-11-07T00:00:00Z"),
+        StatsForCountry(Confirmed: 36000, Deaths: 160, Recovered: 22000, Date: "2020-11-08T00:00:00Z"),
+        StatsForCountry(Confirmed: 38000, Deaths: 150, Recovered: 23000, Date: "2020-11-14T00:00:00Z"),
+        StatsForCountry(Confirmed: 39000, Deaths: 200, Recovered: 24000, Date: "2020-11-20T00:00:00Z")
+    ]) {
+        statsCallback?(stats)
+    }
 }
