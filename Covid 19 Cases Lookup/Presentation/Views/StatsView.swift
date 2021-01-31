@@ -19,20 +19,18 @@ struct StatsView: View {
                 Text("Deaths").tag(1)
                 Text("Recovered").tag(2)
             }.pickerStyle(SegmentedPickerStyle())
-                .padding(5)
-            ScrollView(.horizontal) {
+            HStack {
                 Picker(selection: $viewModel.monthNumber, label: Text("Month")) {
-                ForEach(self.viewModel.monthWithTagList, id: \.self) { title in
-                    Text(title.month).tag(title.tag)
-                }
-            }.pickerStyle(SegmentedPickerStyle())
-            .padding(.vertical, 20)
+                    ForEach(self.viewModel.monthWithTagList, id: \.self) { title in
+                        Text(title.month).tag(title.tag)
+                    }
+                }.pickerStyle(DefaultPickerStyle()).frame(maxWidth: 40, maxHeight: .infinity)
+                ScrollView(.vertical) {
+                    ForEach(self.viewModel.valuesToDisplay, id: \.self) { valueToDisplay in
+                        BarView(barOutputStructure: valueToDisplay).padding(.leading, 3).padding(.trailing, 3)
+                    }
+                }.frame(maxWidth: .infinity).animation(.default)
             }
-            HStack(alignment: .center, spacing: BarConstants.SPACING_BTW_BARS) {
-                ForEach(self.viewModel.valuesToDisplay, id: \.self) { valueToDisplay in
-                    BarView(barOutputStructure: valueToDisplay)
-                }
-            }.animation(.default)
         }.onDisappear { self.viewModel.onDisappear() }
     }
     

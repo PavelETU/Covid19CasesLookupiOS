@@ -172,31 +172,31 @@ extension StatsForCountry {
         var monthStr = ""
         switch getMonthFromDate() {
         case 1:
-            monthStr = "January"
+            monthStr = "Jan"
         case 2:
-            monthStr = "February"
+            monthStr = "Feb"
         case 3:
-            monthStr = "March"
+            monthStr = "Mar"
         case 4:
-            monthStr = "April"
+            monthStr = "Apr"
         case 5:
             monthStr = "May"
         case 6:
-            monthStr = "June"
+            monthStr = "Jun"
         case 7:
-            monthStr = "July"
+            monthStr = "Jul"
         case 8:
-            monthStr = "August"
+            monthStr = "Aug"
         case 9:
-            monthStr = "September"
+            monthStr = "Sep"
         case 10:
-            monthStr = "October"
+            monthStr = "Oct"
         case 11:
-            monthStr = "November"
+            monthStr = "Nov"
         case 12:
-            monthStr = "December"
+            monthStr = "Dec"
         default:
-            monthStr = "Unknown"
+            monthStr = "Unk"
         }
         return monthStr
     }

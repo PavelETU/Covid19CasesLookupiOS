@@ -64,9 +64,9 @@ extension CasesLookupRobot {
     
     func iCanSeeConfirmedCasesForAllAvailableMonths(countryTitle: String) {
         if (countryTitle == "Ireland") {
-            checkMonth(monthTitle: "February", values: [20])
-            checkMonth(monthTitle: "March", values: [45])
-            checkMonth(monthTitle: "April", values: [90, 105])
+            checkMonth(monthTitle: "Feb", values: [20])
+            checkMonth(monthTitle: "Mar", values: [45])
+            checkMonth(monthTitle: "Apr", values: [90, 105])
         } else {
             XCTAssertTrue(false, "There is only stats for Ireland in a local repo")
         }
@@ -74,9 +74,9 @@ extension CasesLookupRobot {
     
     func iCanSeeDeathCasesForAllAvailableMonths(countryTitle: String) {
         if (countryTitle == "Ireland") {
-            checkMonth(monthTitle: "February", values: [3])
-            checkMonth(monthTitle: "March", values: [0])
-            checkMonth(monthTitle: "April", values: [1, 3])
+            checkMonth(monthTitle: "Feb", values: [3])
+            checkMonth(monthTitle: "Mar", values: [0])
+            checkMonth(monthTitle: "Apr", values: [1, 3])
         } else {
             XCTAssertTrue(false, "There is only stats for Ireland in a local repo")
         }
@@ -84,16 +84,16 @@ extension CasesLookupRobot {
     
     func iCanSeeRecoveredCasesForAllAvailableMonths(countryTitle: String) {
         if (countryTitle == "Ireland") {
-            checkMonth(monthTitle: "February", values: [105])
-            checkMonth(monthTitle: "March", values: [20])
-            checkMonth(monthTitle: "April", values: [40, 50])
+            checkMonth(monthTitle: "Feb", values: [105])
+            checkMonth(monthTitle: "Mar", values: [20])
+            checkMonth(monthTitle: "Apr", values: [40, 50])
         } else {
             XCTAssertTrue(false, "There is only stats for Ireland in a local repo")
         }
     }
     
     private func checkMonth(monthTitle: String, values: [Int]) {
-        XCUIApplication().buttons[monthTitle].tap()
+        XCUIApplication().pickerWheels.element.adjust(toPickerWheelValue: monthTitle)
         values.forEach {
             XCTAssertTrue(XCUIApplication().staticTexts[String($0)].exists)
         }
