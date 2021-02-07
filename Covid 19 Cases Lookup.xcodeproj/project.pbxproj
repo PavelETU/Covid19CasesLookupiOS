@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A050776246426AF00D47425 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A050775246426AF00D47425 /* StatsView.swift */; };
+		0A0F60F725D06841009E8AEC /* screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A0F60F625D06841009E8AEC /* screen.png */; };
 		0A122E9E245B580800295B3E /* CountryListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A122E9D245B580800295B3E /* CountryListScreen.swift */; };
 		0A122EDE245B67C500295B3E /* CountriesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A122EDD245B67C500295B3E /* CountriesListViewModel.swift */; };
 		0A2D8267245E2EBD00EB06ED /* NoStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2D8266245E2EBD00EB06ED /* NoStatsView.swift */; };
@@ -52,7 +53,7 @@
 
 /* Begin PBXFileReference section */
 		0A050775246426AF00D47425 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
-		0A0507772464776100D47425 /* screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screen.png; sourceTree = "<group>"; };
+		0A0F60F625D06841009E8AEC /* screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screen.png; sourceTree = "<group>"; };
 		0A122E9D245B580800295B3E /* CountryListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListScreen.swift; sourceTree = "<group>"; };
 		0A122EDD245B67C500295B3E /* CountriesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesListViewModel.swift; sourceTree = "<group>"; };
 		0A2D8266245E2EBD00EB06ED /* NoStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoStatsView.swift; sourceTree = "<group>"; };
@@ -173,7 +174,7 @@
 				0AFB9CF22456E13300B9C1F0 /* Covid 19 Cases LookupTests */,
 				0AFB9CFD2456E13300B9C1F0 /* Covid 19 Cases LookupUITests */,
 				0AFB9CDA2456E13000B9C1F0 /* Products */,
-				0A0507772464776100D47425 /* screen.png */,
+				0A0F60F625D06841009E8AEC /* screen.png */,
 			);
 			sourceTree = "<group>";
 		};
@@ -322,6 +323,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A0F60F725D06841009E8AEC /* screen.png in Resources */,
 				0AFB9CE92456E13200B9C1F0 /* LaunchScreen.storyboard in Resources */,
 				0AFB9CE62456E13200B9C1F0 /* Assets.xcassets in Resources */,
 			);

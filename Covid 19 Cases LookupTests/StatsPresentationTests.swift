@@ -47,17 +47,17 @@ class StatsPresentationTests: XCTestCase {
         testRepo.returnStats()
         
         XCTAssertEqual(viewModel.confirmedCasesByMonth[0][0], 200)
-        XCTAssertEqual(viewModel.confirmedCasesByMonth[0][1], 300)
+        XCTAssertEqual(viewModel.confirmedCasesByMonth[0][1], 100)
         
-        XCTAssertEqual(viewModel.confirmedCasesByMonth[1][0], 400)
+        XCTAssertEqual(viewModel.confirmedCasesByMonth[1][0], 100)
         
-        XCTAssertEqual(viewModel.confirmedCasesByMonth[2][0], 600)
+        XCTAssertEqual(viewModel.confirmedCasesByMonth[2][0], 200)
         
-        XCTAssertEqual(viewModel.confirmedCasesByMonth[3][0], 30000)
-        XCTAssertEqual(viewModel.confirmedCasesByMonth[3][1], 33000)
-        XCTAssertEqual(viewModel.confirmedCasesByMonth[3][2], 36000)
-        XCTAssertEqual(viewModel.confirmedCasesByMonth[3][3], 38000)
-        XCTAssertEqual(viewModel.confirmedCasesByMonth[3][4], 39000)
+        XCTAssertEqual(viewModel.confirmedCasesByMonth[3][0], 29400)
+        XCTAssertEqual(viewModel.confirmedCasesByMonth[3][1], 3000)
+        XCTAssertEqual(viewModel.confirmedCasesByMonth[3][2], 3000)
+        XCTAssertEqual(viewModel.confirmedCasesByMonth[3][3], 2000)
+        XCTAssertEqual(viewModel.confirmedCasesByMonth[3][4], 1000)
     }
 
     func testDeathsCasesParsedProperly() {
@@ -65,17 +65,17 @@ class StatsPresentationTests: XCTestCase {
         testRepo.returnStats()
         
         XCTAssertEqual(viewModel.deathsByMonth[0][0], 1)
-        XCTAssertEqual(viewModel.deathsByMonth[0][1], 5)
+        XCTAssertEqual(viewModel.deathsByMonth[0][1], 4)
         
-        XCTAssertEqual(viewModel.deathsByMonth[1][0], 6)
+        XCTAssertEqual(viewModel.deathsByMonth[1][0], 1)
         
-        XCTAssertEqual(viewModel.deathsByMonth[2][0], 10)
+        XCTAssertEqual(viewModel.deathsByMonth[2][0], 4)
         
-        XCTAssertEqual(viewModel.deathsByMonth[3][0], 150)
-        XCTAssertEqual(viewModel.deathsByMonth[3][1], 150)
-        XCTAssertEqual(viewModel.deathsByMonth[3][2], 160)
-        XCTAssertEqual(viewModel.deathsByMonth[3][3], 150)
-        XCTAssertEqual(viewModel.deathsByMonth[3][4], 200)
+        XCTAssertEqual(viewModel.deathsByMonth[3][0], 140)
+        XCTAssertEqual(viewModel.deathsByMonth[3][1], 0)
+        XCTAssertEqual(viewModel.deathsByMonth[3][2], 10)
+        XCTAssertEqual(viewModel.deathsByMonth[3][3], 0)
+        XCTAssertEqual(viewModel.deathsByMonth[3][4], 50)
     }
     
     func testRecoveredCasesParsedProperly() {
@@ -83,17 +83,17 @@ class StatsPresentationTests: XCTestCase {
         testRepo.returnStats()
         
         XCTAssertEqual(viewModel.recoveredByMonth[0][0], 40)
-        XCTAssertEqual(viewModel.recoveredByMonth[0][1], 50)
+        XCTAssertEqual(viewModel.recoveredByMonth[0][1], 10)
         
-        XCTAssertEqual(viewModel.recoveredByMonth[1][0], 60)
+        XCTAssertEqual(viewModel.recoveredByMonth[1][0], 10)
         
-        XCTAssertEqual(viewModel.recoveredByMonth[2][0], 80)
+        XCTAssertEqual(viewModel.recoveredByMonth[2][0], 20)
         
-        XCTAssertEqual(viewModel.recoveredByMonth[3][0], 20000)
-        XCTAssertEqual(viewModel.recoveredByMonth[3][1], 21000)
-        XCTAssertEqual(viewModel.recoveredByMonth[3][2], 22000)
-        XCTAssertEqual(viewModel.recoveredByMonth[3][3], 23000)
-        XCTAssertEqual(viewModel.recoveredByMonth[3][4], 24000)
+        XCTAssertEqual(viewModel.recoveredByMonth[3][0], 19920)
+        XCTAssertEqual(viewModel.recoveredByMonth[3][1], 1000)
+        XCTAssertEqual(viewModel.recoveredByMonth[3][2], 1000)
+        XCTAssertEqual(viewModel.recoveredByMonth[3][3], 1000)
+        XCTAssertEqual(viewModel.recoveredByMonth[3][4], 1000)
     }
     
     func testEmptyStatsAreDisplayedProperly() {

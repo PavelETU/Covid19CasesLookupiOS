@@ -81,22 +81,24 @@ class CountryStatsViewModel: ObservableObject {
         monthWithTagList = []
         var monthIndex = 0
         monthWithTagList.append(MonthWithTag(month: countryStats.first!.getMonthTitle(), tag: monthIndex))
-        self.addStatsToVariables(indexToAdd: monthIndex, statsToAdd: countryStats.first!)
+        var lastStats = countryStats.first!
+        self.addStatsToVariables(indexToAdd: monthIndex, confirmed: lastStats.Confirmed, deaths: lastStats.Deaths, recovered: lastStats.Recovered)
         for (index, element) in countryStats.enumerated().dropFirst() {
             if (countryStats[index - 1].monthsAreDifferent(statsToCompare: element)) {
                 monthIndex += 1
                 self.addNewMonthToStats()
                 monthWithTagList.append(MonthWithTag(month: element.getMonthTitle(), tag: monthIndex))
             }
-            self.addStatsToVariables(indexToAdd: monthIndex, statsToAdd: element)
+            self.addStatsToVariables(indexToAdd: monthIndex, confirmed: max(0, element.Confirmed - lastStats.Confirmed), deaths: max(0, element.Deaths - lastStats.Deaths), recovered: max(0, element.Recovered - lastStats.Recovered))
+            lastStats = element
         }
         monthNumber = monthIndex
     }
     
-    private func addStatsToVariables(indexToAdd: Int, statsToAdd: StatsForCountry) {
-        self.confirmedCasesByMonth[indexToAdd].append(statsToAdd.Confirmed)
-        self.deathsByMonth[indexToAdd].append(statsToAdd.Deaths)
-        self.recoveredByMonth[indexToAdd].append(statsToAdd.Recovered)
+    private func addStatsToVariables(indexToAdd: Int, confirmed: Int, deaths: Int, recovered: Int) {
+        self.confirmedCasesByMonth[indexToAdd].append(confirmed)
+        self.deathsByMonth[indexToAdd].append(deaths)
+        self.recoveredByMonth[indexToAdd].append(recovered)
     }
     
     private func addNewMonthToStats() {

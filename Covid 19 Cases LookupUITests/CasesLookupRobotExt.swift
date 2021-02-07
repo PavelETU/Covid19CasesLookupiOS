@@ -37,8 +37,8 @@ extension CasesLookupRobot {
     
     func iSeeConfirmedCasesFromDataLayerForACountry(countryTitle: String) {
         if (countryTitle == "Ireland") {
-            XCTAssertTrue(XCUIApplication().staticTexts["90"].exists)
-            XCTAssertTrue(XCUIApplication().staticTexts["105"].exists)
+            XCTAssertTrue(XCUIApplication().staticTexts["45"].exists)
+            XCTAssertTrue(XCUIApplication().staticTexts["15"].exists)
         } else {
             XCTAssertTrue(false, "There is only stats for Ireland in a local repo")
         }
@@ -47,7 +47,7 @@ extension CasesLookupRobot {
     func iSeeDeathCasesFromDataLayerForACountry(countryTitle: String) {
         if (countryTitle == "Ireland") {
             XCTAssertTrue(XCUIApplication().staticTexts["1"].exists)
-            XCTAssertTrue(XCUIApplication().staticTexts["3"].exists)
+            XCTAssertTrue(XCUIApplication().staticTexts["2"].exists)
         } else {
             XCTAssertTrue(false, "There is only stats for Ireland in a local repo")
         }
@@ -55,8 +55,8 @@ extension CasesLookupRobot {
     
     func iSeeRecoveredCasesFromDataLayerForACountry(countryTitle: String) {
         if (countryTitle == "Ireland") {
-            XCTAssertTrue(XCUIApplication().staticTexts["40"].exists)
-            XCTAssertTrue(XCUIApplication().staticTexts["50"].exists)
+            XCTAssertTrue(XCUIApplication().staticTexts["20"].exists)
+            XCTAssertTrue(XCUIApplication().staticTexts["10"].exists)
         } else {
             XCTAssertTrue(false, "There is only stats for Ireland in a local repo")
         }
@@ -65,8 +65,8 @@ extension CasesLookupRobot {
     func iCanSeeConfirmedCasesForAllAvailableMonths(countryTitle: String) {
         if (countryTitle == "Ireland") {
             checkMonth(monthTitle: "Feb", values: [20])
-            checkMonth(monthTitle: "Mar", values: [45])
-            checkMonth(monthTitle: "Apr", values: [90, 105])
+            checkMonth(monthTitle: "Mar", values: [25])
+            checkMonth(monthTitle: "Apr", values: [45, 15])
         } else {
             XCTAssertTrue(false, "There is only stats for Ireland in a local repo")
         }
@@ -76,7 +76,7 @@ extension CasesLookupRobot {
         if (countryTitle == "Ireland") {
             checkMonth(monthTitle: "Feb", values: [3])
             checkMonth(monthTitle: "Mar", values: [0])
-            checkMonth(monthTitle: "Apr", values: [1, 3])
+            checkMonth(monthTitle: "Apr", values: [1, 2])
         } else {
             XCTAssertTrue(false, "There is only stats for Ireland in a local repo")
         }
@@ -85,8 +85,8 @@ extension CasesLookupRobot {
     func iCanSeeRecoveredCasesForAllAvailableMonths(countryTitle: String) {
         if (countryTitle == "Ireland") {
             checkMonth(monthTitle: "Feb", values: [105])
-            checkMonth(monthTitle: "Mar", values: [20])
-            checkMonth(monthTitle: "Apr", values: [40, 50])
+            checkMonth(monthTitle: "Mar", values: [0])
+            checkMonth(monthTitle: "Apr", values: [20, 10])
         } else {
             XCTAssertTrue(false, "There is only stats for Ireland in a local repo")
         }
