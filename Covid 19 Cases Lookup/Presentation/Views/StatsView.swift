@@ -24,7 +24,7 @@ struct StatsView: View {
                     ForEach(self.viewModel.monthWithTagList, id: \.self) { title in
                         Text(title.month).tag(title.tag)
                     }
-                }.pickerStyle(DefaultPickerStyle()).frame(maxWidth: 40, maxHeight: .infinity)
+                    }.pickerStyle(DefaultPickerStyle()).frame(maxWidth: 40, maxHeight: .infinity).clipped()
                 ScrollView(.vertical) {
                     GeometryReader { metrics in
                         VStack {
