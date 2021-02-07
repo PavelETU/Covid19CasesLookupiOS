@@ -19,7 +19,7 @@ struct CountryStatsScreen: View {
                 self.getViewForState()
             }
             .onAppear {
-                self.viewModel.onAppear(country: self.country, screenWidth: metrics.size.width)
+                self.viewModel.onAppear(country: self.country)
             }
         }.navigationBarTitle(Text("Cases in " + self.country.Country), displayMode: .inline)
     }

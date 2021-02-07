@@ -9,11 +9,6 @@
 import Foundation
 import SwiftUI
 
-struct BarConstants {
-    static let MAX_VALUE_OF_BAR: CGFloat = 300
-    static let SPACING_BTW_BARS: CGFloat = 1
-}
-
 class CountryStatsViewModel: ObservableObject {
     
     init(repository: CasesLookupRepository) {
@@ -23,7 +18,6 @@ class CountryStatsViewModel: ObservableObject {
     var confirmedCasesByMonth: [[Int]] = [[]]
     var deathsByMonth: [[Int]] = [[]]
     var recoveredByMonth: [[Int]] = [[]]
-    private var screenWidth: CGFloat!
     private var skipUpdate = false
     
     @Published var valuesToDisplay: [BarOutputStructure] = []
@@ -51,9 +45,8 @@ class CountryStatsViewModel: ObservableObject {
     private let repo: CasesLookupRepository
     private var country: Country!
     
-    func onAppear(country: Country, screenWidth: CGFloat) {
+    func onAppear(country: Country) {
         self.country = country
-        self.screenWidth = screenWidth
         loadCountryStats()
     }
     
@@ -125,14 +118,13 @@ class CountryStatsViewModel: ObservableObject {
     
     private func updateValuesToDisplayByData(valuesToProcess: [Int]) {
         let maxValue = valuesToProcess.max()!
-        let barWidth = screenWidth / CGFloat(valuesToProcess.count) - BarConstants.SPACING_BTW_BARS * 2
-        var normalizedValues = valuesToProcess.map { (CGFloat($0) / CGFloat(maxValue)) * BarConstants.MAX_VALUE_OF_BAR }
+        var normalizedValues = valuesToProcess.map { (CGFloat($0) / CGFloat(maxValue)) }
         var temp:[BarOutputStructure] = []
         for index in 0..<normalizedValues.count {
             if (normalizedValues[index].isNaN) {
                 normalizedValues[index] = CGFloat(valuesToProcess[index])
             }
-            temp.append(BarOutputStructure(barWidth: barWidth, normalizedValue: normalizedValues[index], actualValue: valuesToProcess[index]))
+            temp.append(BarOutputStructure(normalizedValue: normalizedValues[index], actualValue: valuesToProcess[index]))
         }
         valuesToDisplay = temp
     }
@@ -147,7 +139,6 @@ enum StatsScreenStates {
 
 
 struct BarOutputStructure: Hashable {
-    let barWidth: CGFloat
     let normalizedValue: CGFloat
     let actualValue: Int
 }

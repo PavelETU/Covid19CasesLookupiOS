@@ -20,7 +20,7 @@ class StatsPresentationTests: XCTestCase {
     }
     
     func testArraySplitIntoMonthsProperly() {
-        viewModel.onAppear(country: Country(Country: "", Slug: "", ISO2: ""), screenWidth: 1000)
+        viewModel.onAppear(country: Country(Country: "", Slug: "", ISO2: ""))
         testRepo.returnStats()
         
         XCTAssertEqual(viewModel.confirmedCasesByMonth[0].count, 2)
@@ -43,7 +43,7 @@ class StatsPresentationTests: XCTestCase {
     }
     
     func testConfirmedCasesParsedProperly() {
-        viewModel.onAppear(country: Country(Country: "", Slug: "", ISO2: ""), screenWidth: 1000)
+        viewModel.onAppear(country: Country(Country: "", Slug: "", ISO2: ""))
         testRepo.returnStats()
         
         XCTAssertEqual(viewModel.confirmedCasesByMonth[0][0], 200)
@@ -61,7 +61,7 @@ class StatsPresentationTests: XCTestCase {
     }
 
     func testDeathsCasesParsedProperly() {
-        viewModel.onAppear(country: Country(Country: "", Slug: "", ISO2: ""), screenWidth: 1000)
+        viewModel.onAppear(country: Country(Country: "", Slug: "", ISO2: ""))
         testRepo.returnStats()
         
         XCTAssertEqual(viewModel.deathsByMonth[0][0], 1)
@@ -79,7 +79,7 @@ class StatsPresentationTests: XCTestCase {
     }
     
     func testRecoveredCasesParsedProperly() {
-        viewModel.onAppear(country: Country(Country: "", Slug: "", ISO2: ""), screenWidth: 1000)
+        viewModel.onAppear(country: Country(Country: "", Slug: "", ISO2: ""))
         testRepo.returnStats()
         
         XCTAssertEqual(viewModel.recoveredByMonth[0][0], 40)
@@ -97,7 +97,7 @@ class StatsPresentationTests: XCTestCase {
     }
     
     func testEmptyStatsAreDisplayedProperly() {
-        viewModel.onAppear(country: Country(Country: "", Slug: "", ISO2: ""), screenWidth: 1000)
+        viewModel.onAppear(country: Country(Country: "", Slug: "", ISO2: ""))
         testRepo.returnStats(stats: [
             StatsForCountry(Confirmed: 0, Deaths: 0, Recovered: 0, Date: "2020-04-04T00:00:00Z")
         ])
@@ -115,13 +115,12 @@ class StatsPresentationTests: XCTestCase {
         XCTAssertEqual(viewModel.recoveredByMonth[0][0], 0)
         
         XCTAssertEqual(viewModel.valuesToDisplay.count, 1)
-        XCTAssertEqual(viewModel.valuesToDisplay[0].barWidth, 998)
         XCTAssertEqual(viewModel.valuesToDisplay[0].normalizedValue, 0)
         XCTAssertEqual(viewModel.valuesToDisplay[0].actualValue, 0)
     }
     
     func testMonthTitlesAreDisplayedProperly() {
-        viewModel.onAppear(country: Country(Country: "", Slug: "", ISO2: ""), screenWidth: 1000)
+        viewModel.onAppear(country: Country(Country: "", Slug: "", ISO2: ""))
         testRepo.returnStats(stats: [
             StatsForCountry(Confirmed: 0, Deaths: 0, Recovered: 0, Date: "2020-01-04T00:00:00Z"),
             StatsForCountry(Confirmed: 0, Deaths: 0, Recovered: 0, Date: "2020-02-04T00:00:00Z"),

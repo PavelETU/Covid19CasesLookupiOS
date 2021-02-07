@@ -25,11 +25,13 @@ struct StatsView: View {
                         Text(title.month).tag(title.tag)
                     }
                 }.pickerStyle(DefaultPickerStyle()).frame(maxWidth: 40, maxHeight: .infinity)
-                ScrollView(.vertical) {
-                    ForEach(self.viewModel.valuesToDisplay, id: \.self) { valueToDisplay in
-                        BarView(barOutputStructure: valueToDisplay).padding(.leading, 3).padding(.trailing, 3)
-                    }
-                }.frame(maxWidth: .infinity).animation(.default)
+                GeometryReader { metrics in
+                    ScrollView(.vertical) {
+                        ForEach(self.viewModel.valuesToDisplay, id: \.self) { valueToDisplay in
+                            BarView(barOutputStructure: valueToDisplay, widthOfBar: metrics.size.width).padding(.leading, 3).padding(.trailing, 3)
+                        }
+                        }.frame(maxWidth: .infinity).animation(.default)
+                }
             }
         }.onDisappear { self.viewModel.onDisappear() }
     }

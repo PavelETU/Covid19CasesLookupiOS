@@ -62,7 +62,7 @@ class Covid_19_Cases_LookupTests: XCTestCase {
     func testStatsViewModelMakesARequestOnAppearWithTheRightCountry() {
         let country = Country(Country: "Ireland", Slug: "", ISO2: "")
         
-        countryStatsViewModel.onAppear(country: country, screenWidth: 1000)
+        countryStatsViewModel.onAppear(country: country)
         
         XCTAssertEqual(testRepo.loadStatsCallCount, 1)
         XCTAssertEqual(testRepo.lastCountryToLoadStatsFor, country)
@@ -71,7 +71,7 @@ class Covid_19_Cases_LookupTests: XCTestCase {
     
     func testStatsViewModelShowsErrorWhenGettingNilFromDataSource() {
         let country = Country(Country: "Ireland", Slug: "", ISO2: "")
-        countryStatsViewModel.onAppear(country: country, screenWidth: 1000)
+        countryStatsViewModel.onAppear(country: country)
         
         testRepo.returnStatsForCountry(valueToReturn: nil)
         
@@ -84,7 +84,7 @@ class Covid_19_Cases_LookupTests: XCTestCase {
             StatsForCountry(Confirmed: 105, Deaths: 1, Recovered: 50, Date: "2020-04-05T00:00:00Z")
         ]
         let country = Country(Country: "Ireland", Slug: "", ISO2: "")
-        countryStatsViewModel.onAppear(country: country, screenWidth: 1000)
+        countryStatsViewModel.onAppear(country: country)
         
         testRepo.returnStatsForCountry(valueToReturn: stats)
         
@@ -97,7 +97,7 @@ class Covid_19_Cases_LookupTests: XCTestCase {
             StatsForCountry(Confirmed: 105, Deaths: 1, Recovered: 50, Date: "2020-04-05T00:00:00Z")
         ]
         let country = Country(Country: "Ireland", Slug: "", ISO2: "")
-        countryStatsViewModel.onAppear(country: country, screenWidth: 1000)
+        countryStatsViewModel.onAppear(country: country)
         testRepo.returnStatsForCountry(valueToReturn: nil)
         
         countryStatsViewModel.onRetry()
@@ -110,7 +110,7 @@ class Covid_19_Cases_LookupTests: XCTestCase {
     
     func testNoInfoStateWhenGettingEmptyList() {
         let country = Country(Country: "Ireland", Slug: "", ISO2: "")
-        countryStatsViewModel.onAppear(country: country, screenWidth: 1000)
+        countryStatsViewModel.onAppear(country: country)
         
         testRepo.returnStatsForCountry(valueToReturn: [])
         
